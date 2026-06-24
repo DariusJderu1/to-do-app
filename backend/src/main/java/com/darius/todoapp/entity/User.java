@@ -7,6 +7,8 @@ import jakarta.persistence.*;
 @Table(name="users")
 public class User {
 
+    // Define the fields
+
     // this field is the PK of the table
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,4 +32,21 @@ public class User {
 
     @Column(name="role")
     private String role;
+
+    // Define the constructors
+    public User() {
+
+    }
+
+    public User(Long id, String username, String email, String firstName, String lastName, String hashedPassword, String role) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.hashedPassword = hashedPassword;
+        this.role = role;
+    }
+
+
 }
