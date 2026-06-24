@@ -39,8 +39,8 @@ public class User {
 
     }
 
-    public User(Long id, String username, String email, String firstName, String lastName, String hashedPassword, String role) {
-        this.id = id;
+    public User(String username, String email, String firstName, String lastName, String hashedPassword, String role) {
+
         this.username = username;
         this.email = email;
         this.firstName = firstName;
@@ -117,7 +117,6 @@ public class User {
                 ", email='" + email + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", hashedPassword='" + hashedPassword + '\'' +
                 ", role='" + role + '\'' +
                 '}';
     }
