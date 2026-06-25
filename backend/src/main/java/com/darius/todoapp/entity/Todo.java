@@ -32,8 +32,13 @@ public class Todo {
     @Column(name="important")
     private boolean important;
 
-    @Column(name="user_id")
-    private Long userId;
+    // More todos can belong to a single user
+    @ManyToOne
+    // Used instead of @Column because it is not a simple column.
+    // It represents the relationship to the User entity, and the column
+    // that makes this relationship possible in the DB is "user_id"
+    @JoinColumn(name="user_id")
+    private User user;
 
 
     // Define the constructors
@@ -41,18 +46,18 @@ public class Todo {
 
     }
 
-    public Todo(String title, String description, LocalDate dueDate, boolean completed, boolean important, Long userId) {
+    public Todo(String title, String description, LocalDate dueDate, boolean completed, boolean important, User user) {
 
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.completed = completed;
         this.important = important;
-        this.userId = userId;
+        this.user = user;
     }
 
-    // Define the setters and getters
 
+    // Define the setters and getters
     public Long getId() {
         return id;
     }
@@ -77,8 +82,8 @@ public class Todo {
         return important;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
     public void setId(Long id) {
@@ -105,8 +110,8 @@ public class Todo {
         this.important = important;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
 
@@ -121,7 +126,7 @@ public class Todo {
                 ", dueDate=" + dueDate +
                 ", completed=" + completed +
                 ", important=" + important +
-                ", userId=" + userId +
+                ", userId=" + user.getId() +
                 '}';
     }
 }
