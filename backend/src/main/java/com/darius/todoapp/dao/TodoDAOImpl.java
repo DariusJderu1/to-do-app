@@ -1,12 +1,12 @@
 package com.darius.todoapp.dao;
 
 import com.darius.todoapp.entity.Todo;
-import jakarta.persistence.Embeddable;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -43,10 +43,24 @@ public class TodoDAOImpl implements TodoDAO {
     }
 
     @Override
-    public void deleteById(int theId) {
+    public void deleteById(Long theId) {
 
         Todo theTodo = entityManager.find(Todo.class, theId);
 
         entityManager.remove(theTodo);
+    }
+
+    @Override
+    public List<Todo> findByDueDate(LocalDate theDate) {
+
+        TypedQuery<Todo> query = entityManager.createQuery(
+               "FROM Todo WHERE dueDate = :theData", Todo.class
+        );
+
+        query.setParameter("theData", theDate);
+
+        List<Todo> todos = query.getResultList();
+
+        return todos;
     }
 }

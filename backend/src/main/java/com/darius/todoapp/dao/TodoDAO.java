@@ -2,6 +2,7 @@ package com.darius.todoapp.dao;
 
 import com.darius.todoapp.entity.Todo;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface TodoDAO {
@@ -10,5 +11,7 @@ public interface TodoDAO {
 
     Todo save(Todo theTodo);
 
-    void deleteById(int theId);
+    void deleteById(Long theId);
+
+    List<Todo> findByDueDate(LocalDate theDate);
 }
