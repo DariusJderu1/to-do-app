@@ -78,4 +78,15 @@ public class TodoDAOImpl implements TodoDAO {
 
         return query.getResultList();
     }
+
+    @Override
+    public List<Todo> findAllImportant() {
+
+        TypedQuery<Todo> query = entityManager.createQuery(
+                "FROM Todo " +
+                        "WHERE important = true", Todo.class
+        );
+
+        return query.getResultList();
+    }
 }

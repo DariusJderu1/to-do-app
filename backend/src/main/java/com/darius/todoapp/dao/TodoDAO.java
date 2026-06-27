@@ -16,4 +16,6 @@ public interface TodoDAO {
     List<Todo> findByDueDate(LocalDate theDate);
 
     List<Todo> findByDueDateBetween(LocalDate startDate, LocalDate endDate);
+
+    List<Todo> findAllImportant();
 }
