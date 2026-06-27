@@ -32,13 +32,13 @@ public class Todo {
     @Column(name="important")
     private boolean important;
 
-    // More todos can belong to a single user
+    // More todos can belong to a single project
     @ManyToOne
     // Used instead of @Column because it is not a simple column.
-    // It represents the relationship to the User entity, and the column
-    // that makes this relationship possible in the DB is "user_id"
-    @JoinColumn(name="user_id")
-    private User user;
+    // It represents the relationship to the Project entity, and the column
+    // that makes this relationship possible in the DB is "project_id"
+    @JoinColumn(name="project_id")
+    private Project project;
 
 
     // Define the constructors
@@ -46,14 +46,14 @@ public class Todo {
 
     }
 
-    public Todo(String title, String description, LocalDate dueDate, boolean completed, boolean important, User user) {
+    public Todo(String title, String description, LocalDate dueDate, boolean completed, boolean important, Project project) {
 
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.completed = completed;
         this.important = important;
-        this.user = user;
+        this.project = project;
     }
 
 
@@ -82,8 +82,8 @@ public class Todo {
         return important;
     }
 
-    public User getUser() {
-        return user;
+    public Project getProject() {
+        return project;
     }
 
     public void setId(Long id) {
@@ -110,8 +110,8 @@ public class Todo {
         this.important = important;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setProject(Project project) {
+        this.project = project;
     }
 
 
@@ -125,7 +125,7 @@ public class Todo {
                 ", dueDate=" + dueDate +
                 ", completed=" + completed +
                 ", important=" + important +
-                ", userId=" + user.getId() +
+                ", projectId=" + project.getId() +
                 '}';
     }
 }
