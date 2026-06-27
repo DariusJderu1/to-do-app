@@ -14,4 +14,6 @@ public interface TodoDAO {
     void deleteById(Long theId);
 
     List<Todo> findByDueDate(LocalDate theDate);
+
+    List<Todo> findByDueDateBetween(LocalDate startDate, LocalDate endDate);
 }

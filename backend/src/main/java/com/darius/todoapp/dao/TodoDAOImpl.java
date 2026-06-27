@@ -63,4 +63,19 @@ public class TodoDAOImpl implements TodoDAO {
 
         return todos;
     }
+
+    @Override
+    public List<Todo> findByDueDateBetween(LocalDate startDate, LocalDate endDate) {
+
+        TypedQuery<Todo> query = entityManager.createQuery(
+                "FROM Todo " +
+                        "WHERE dueDate " +
+                        "BETWEEN :startDate AND :endDate", Todo.class
+        );
+
+        query.setParameter("startDate", startDate);
+        query.setParameter("endDate", endDate);
+
+        return query.getResultList();
+    }
 }
