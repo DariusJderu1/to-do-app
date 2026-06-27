@@ -47,7 +47,8 @@ public class TodoDAOImpl implements TodoDAO {
 
         Todo theTodo = entityManager.find(Todo.class, theId);
 
-        entityManager.remove(theTodo);
+        if(theTodo != null)
+            entityManager.remove(theTodo);
     }
 
     @Override
