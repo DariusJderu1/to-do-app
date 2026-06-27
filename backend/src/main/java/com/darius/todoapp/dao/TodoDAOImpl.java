@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public class TodoDAOImpl implements TodoDAO {
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
 
     @Autowired

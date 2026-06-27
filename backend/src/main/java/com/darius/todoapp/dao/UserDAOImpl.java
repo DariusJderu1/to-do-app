@@ -11,8 +11,8 @@ import jakarta.persistence.EntityManager;
 public class UserDAOImpl implements UserDAO {
 
     // The object used to communicate with the DB
-    // The Class at the very end is a spring bean - available for injection
-    private EntityManager entityManager;
+    // The Class (EntityManager) is a spring bean - available for injection
+    private final EntityManager entityManager;
 
     // The annotation tells Spring to inject a dependency
     @Autowired

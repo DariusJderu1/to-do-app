@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public class ProjectDAOImpl implements ProjectDAO {
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
 
     @Autowired
