@@ -116,7 +116,6 @@ public class Todo {
 
 
     // define toString
-
     @Override
     public String toString() {
         return "Todo{" +
