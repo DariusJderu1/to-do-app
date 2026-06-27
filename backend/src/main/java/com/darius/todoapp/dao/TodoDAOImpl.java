@@ -14,11 +14,13 @@ public class TodoDAOImpl implements TodoDAO {
 
     private EntityManager entityManager;
 
+
     @Autowired
     public TodoDAOImpl(EntityManager entityManager) {
 
         this.entityManager = entityManager;
     }
+
 
     @Override
     public List<Todo> findAll() {

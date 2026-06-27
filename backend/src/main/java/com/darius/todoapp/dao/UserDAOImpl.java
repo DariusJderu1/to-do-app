@@ -1,12 +1,9 @@
 package com.darius.todoapp.dao;
 
-import com.darius.todoapp.entity.User;
-import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import jakarta.persistence.EntityManager;
-import java.util.List;
 
 // This class is specialized in DB operations
 // It is also a spring bean - available for injection
@@ -22,18 +19,4 @@ public class UserDAOImpl implements UserDAO {
     public UserDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
-
-//    @Override
-//    public List<User> findAll() {
-//
-//        // Create a query
-//        TypedQuery<User> theQuery = entityManager.createQuery(
-//                "FROM User", User.class
-//        );
-//
-//        // execute the query
-//        List<User> users = theQuery.getResultList();
-//
-//        return users;
-//    }
 }
