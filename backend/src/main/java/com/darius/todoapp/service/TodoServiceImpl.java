@@ -23,6 +23,12 @@ public class TodoServiceImpl implements TodoService{
 
 
     @Override
+    public Todo findById(Long theId) {
+
+        return todoDAO.findById(theId);
+    }
+
+    @Override
     public List<Todo> findAll() {
 
         return todoDAO.findAll();

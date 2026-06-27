@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface TodoDAO {
 
+    Todo findById(Long theId);
+
     List<Todo> findAll();
 
     Todo save(Todo theTodo);

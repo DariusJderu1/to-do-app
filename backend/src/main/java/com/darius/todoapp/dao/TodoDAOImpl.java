@@ -23,6 +23,12 @@ public class TodoDAOImpl implements TodoDAO {
 
 
     @Override
+    public Todo findById(Long theId) {
+
+        return entityManager.find(Todo.class, theId);
+    }
+
+    @Override
     public List<Todo> findAll() {
 
         TypedQuery<Todo> theQuery = entityManager.createQuery(
