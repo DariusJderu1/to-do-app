@@ -1,6 +1,10 @@
 package com.darius.todoapp.rest;
 
+import com.darius.todoapp.dto.TodoRequest;
+import com.darius.todoapp.dto.TodoResponse;
+import com.darius.todoapp.entity.Project;
 import com.darius.todoapp.entity.Todo;
+import com.darius.todoapp.service.ProjectService;
 import com.darius.todoapp.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +17,39 @@ import java.util.List;
 public class TodoRestController {
 
     private final TodoService todoService;
+    private final ProjectService projectService;
 
     @Autowired
-    public TodoRestController(TodoService todoService) {
+    public TodoRestController(TodoService todoService, ProjectService projectService) {
 
         this.todoService = todoService;
+        this.projectService = projectService;
+    }
+
+
+    // Converts a basic Todo entity to the Todo Response
+    private TodoResponse convertToResponse(Todo todo) {
+
+        Project project = todo.getProject();
+
+        return new TodoResponse(
+                todo.getId(),
+                todo.getTitle(),
+                todo.getDescription(),
+                todo.getDueDate(),
+                todo.isCompleted(),
+                todo.isImportant(),
+                project.getId(),
+                project.getName()
+        );
+    }
+
+    // Convert a list of basic Todos in a List of TodoResponse
+    private List<TodoResponse> convertToResponseList(List<Todo> todos) {
+
+        return todos.stream()
+                .map(todo -> convertToResponse(todo))
+                .toList();
     }
 
 
@@ -27,63 +59,108 @@ public class TodoRestController {
     // this method will be called and return a list of
     // all the todos
     @GetMapping
-    public List<Todo> findAll() {
+    public List<TodoResponse> findAll() {
 
-        return todoService.findAll();
+        return convertToResponseList(todoService.findAll());
     }
 
     // Get all the todos for today
     @GetMapping("/today")
-    public List<Todo> getTodosToday() {
+    public List<TodoResponse> getTodosToday() {
 
-        return todoService.findTodosToday();
+        return convertToResponseList(todoService.findTodosToday());
     }
 
     // Get all the following todos in the next seven days
     @GetMapping("/next-seven-days")
-    public List<Todo> getTodosNextSevenDays() {
+    public List<TodoResponse> getTodosNextSevenDays() {
 
-        return todoService.findTodosNextSevenDays();
+        return convertToResponseList(todoService.findTodosNextSevenDays());
     }
 
     // Get all important todos
     @GetMapping("/important")
-    public List<Todo> getImportantTodos() {
+    public List<TodoResponse> getImportantTodos() {
 
-        return todoService.findAllImportant();
+        return convertToResponseList(todoService.findAllImportant());
     }
 
 
     // POST Requests
 
+    // Add a todo
     // The @RequestBody annotation tells Spring
     // to take the body of the HTTP request, the JSON
     // and transform it into a Java Object of type Todo
     // using Jackson
-    // Add a todo
     @PostMapping
-    public Todo addTodo(@RequestBody Todo theTodo) {
+    public TodoResponse addTodo(@RequestBody TodoRequest todoRequest) {
 
+        // All the things below aren't needed anymore, because
+
+        // we have a TodoRequest that forces the fields, not just
+        // Todo entity where an ID wouldn't have been wrong
+        // ---------------------------------------
         // In case the client passes an ID in the
         // request body, we set the id to null to make
         // sure an insert is made, not an update
-        theTodo.setId(Long.valueOf(0));
-
+        // ---------------------------------------
+        // theTodo.setId(Long.valueOf(0));
+        // ---------------------------------------
         // we basically kinda only return the JSON
         // the client has sent but with the updated ID
-        return todoService.save(theTodo);
+        // return todoService.save(theTodo);
+
+        Project project = projectService.findById(todoRequest.getProjectId());
+
+        if(project == null)
+            throw new RuntimeException("Project id not found - " + todoRequest.getProjectId());
+
+        Todo theTodo = new Todo(
+                todoRequest.getTitle(),
+                todoRequest.getDescription(),
+                todoRequest.getDueDate(),
+                todoRequest.isCompleted(),
+                todoRequest.isImportant(),
+                project
+        );
+
+        Todo dbTodo = todoService.save(theTodo);
+
+        return convertToResponse(dbTodo);
     }
 
 
     // PUT Requests
 
     // Update a todo
-    @PutMapping
-    public Todo updateTodo(@RequestBody Todo theTodo) {
+    @PutMapping("/{todoId}")
+    public TodoResponse updateTodo(@PathVariable Long todoId, @RequestBody TodoRequest todoRequest) {
 
-        Todo dbTodo = todoService.save(theTodo);
+        // Before TodoRequest/Response
+        // Todo dbTodo = todoService.save(theTodo);
+        // return dbTodo;
 
-        return dbTodo;
+        Todo existingTodo = todoService.findById(todoId);
+
+        if(existingTodo == null)
+            throw new RuntimeException("Todo id not found - " + todoId);
+
+        Project project = projectService.findById(todoRequest.getProjectId());
+
+        if(project == null)
+            throw new RuntimeException("Project id not found - " + todoRequest.getProjectId());
+
+        existingTodo.setTitle(todoRequest.getTitle());
+        existingTodo.setDescription(todoRequest.getDescription());
+        existingTodo.setDueDate(todoRequest.getDueDate());
+        existingTodo.setCompleted(todoRequest.isCompleted());
+        existingTodo.setImportant(todoRequest.isImportant());
+        existingTodo.setProject(project);
+
+        Todo dbTodo = todoService.save(existingTodo);
+
+        return convertToResponse(dbTodo);
     }
 
 
