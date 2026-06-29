@@ -2,24 +2,23 @@ package com.darius.todoapp.dto;
 
 import java.time.LocalDate;
 
-public class TodoRequest {
+public class TodoPatchRequest {
 
     // Fields
     private String title;
     private String description;
     private LocalDate dueDate;
-    private boolean completed;
-    private boolean important;
+    private Boolean completed;
+    private Boolean important;
     private Long projectId;
 
 
     // Constructors
-    public TodoRequest() {
+    public TodoPatchRequest() {
 
     }
 
-    public TodoRequest(String title, String description, LocalDate dueDate, boolean completed, boolean important, Long projectId) {
-
+    public TodoPatchRequest(String title, String description, LocalDate dueDate, Boolean completed, Boolean important, Long projectId) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
@@ -42,11 +41,11 @@ public class TodoRequest {
         return dueDate;
     }
 
-    public boolean isCompleted() {
+    public Boolean getCompleted() {
         return completed;
     }
 
-    public boolean isImportant() {
+    public Boolean getImportant() {
         return important;
     }
 
@@ -66,11 +65,11 @@ public class TodoRequest {
         this.dueDate = dueDate;
     }
 
-    public void setCompleted(boolean completed) {
+    public void setCompleted(Boolean completed) {
         this.completed = completed;
     }
 
-    public void setImportant(boolean important) {
+    public void setImportant(Boolean important) {
         this.important = important;
     }
 

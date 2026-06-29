@@ -1,5 +1,6 @@
 package com.darius.todoapp.rest;
 
+import com.darius.todoapp.dto.TodoPatchRequest;
 import com.darius.todoapp.dto.TodoRequest;
 import com.darius.todoapp.dto.TodoResponse;
 import com.darius.todoapp.entity.Project;
@@ -113,6 +114,7 @@ public class TodoRestController {
 
         Project project = projectService.findById(todoRequest.getProjectId());
 
+        // We cannot have a todo that is not related to any project
         if(project == null)
             throw new RuntimeException("Project id not found - " + todoRequest.getProjectId());
 
@@ -131,7 +133,7 @@ public class TodoRestController {
     }
 
 
-    // PUT Requests
+    // PUT & PATCH Requests
 
     // Update a todo
     @PutMapping("/{todoId}")
@@ -157,6 +159,58 @@ public class TodoRestController {
         existingTodo.setCompleted(todoRequest.isCompleted());
         existingTodo.setImportant(todoRequest.isImportant());
         existingTodo.setProject(project);
+
+        Todo dbTodo = todoService.save(existingTodo);
+
+        return convertToResponse(dbTodo);
+    }
+
+    // Update a todo with a partial request body
+    // Didn't use a classic Map<String, Object and the jsonMapper object
+    // because first of all we needed the request of a Todo (TodoRequest) not just a Todo,
+    // from obvious reasons (we didn't want the json of the todo to have a complete project json field in it).
+    // Second of all we had to create a TodoPatchRequest so we can make use of Boolean
+    // (instead of boolean) class. If we used boolean, because of its primitive nature,
+    // if the client didn't send explicit values for those 2 fields (completed and important)
+    // the object created in TodoRequest would have had false as default for those two fields
+    // and results in a mistake. The PATCH request is meant to be able to send whatever fields you wish
+    @PatchMapping("/{todoId}")
+    public TodoResponse patchTodo(@PathVariable Long todoId, @RequestBody TodoPatchRequest patchRequest) {
+
+        Todo existingTodo = todoService.findById(todoId);
+
+        // If there is no todo, we cannot update anything
+        if(existingTodo == null)
+            throw new RuntimeException("Todo id not found - " + todoId);
+
+
+        // Create the Patch - complete the todo
+        if(patchRequest.getTitle() != null)
+            existingTodo.setTitle(patchRequest.getTitle());
+
+        if(patchRequest.getDescription() != null)
+            existingTodo.setDescription(patchRequest.getDescription());
+
+        if(patchRequest.getDueDate() != null)
+            existingTodo.setDueDate(patchRequest.getDueDate());
+
+        if(patchRequest.getCompleted() != null)
+            existingTodo.setCompleted(patchRequest.getCompleted());
+
+        if(patchRequest.getImportant() != null)
+            existingTodo.setImportant(patchRequest.getImportant());
+
+        if(patchRequest.getProjectId() != null) {
+
+            Project project = projectService.findById(patchRequest.getProjectId());
+
+            if(project == null)
+                throw new RuntimeException("Project id not found - " + patchRequest.getProjectId());
+
+            else
+                existingTodo.setProject(project);
+        }
+
 
         Todo dbTodo = todoService.save(existingTodo);
 
