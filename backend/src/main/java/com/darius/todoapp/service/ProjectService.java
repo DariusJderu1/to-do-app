@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface ProjectService {
 
+    Project findById(Long theId);
+
     List<Project> findAll();
 
     Project save(Project theProject);

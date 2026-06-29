@@ -21,6 +21,12 @@ public class ProjectDAOImpl implements ProjectDAO {
 
 
     @Override
+    public Project findById(Long theId) {
+
+        return entityManager.find(Project.class, theId);
+    }
+
+    @Override
     public List<Project> findAll() {
 
         TypedQuery<Project> theQuery = entityManager.createQuery(

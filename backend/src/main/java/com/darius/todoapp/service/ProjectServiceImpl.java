@@ -19,6 +19,13 @@ public class ProjectServiceImpl implements ProjectService {
         this.projectDAO = projectDAO;
     }
 
+
+    @Override
+    public Project findById(Long theId) {
+
+        return projectDAO.findById(theId);
+    }
+
     @Override
     public List<Project> findAll() {
 
