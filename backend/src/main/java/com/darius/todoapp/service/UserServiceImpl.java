@@ -1,4 +1,6 @@
 package com.darius.todoapp.service;
 
-public class UserServiceImpl {
+import com.darius.todoapp.entity.User;
+
+public class UserServiceImpl implements UserService {
 }

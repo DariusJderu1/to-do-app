@@ -1,4 +1,4 @@
 package com.darius.todoapp.service;
 
-public interface UserSerive {
+public interface UserService {
 }

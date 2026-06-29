@@ -97,9 +97,9 @@ public class TodoRestController {
     public TodoResponse addTodo(@RequestBody TodoRequest todoRequest) {
 
         // All the things below aren't needed anymore, because
-
         // we have a TodoRequest that forces the fields, not just
         // Todo entity where an ID wouldn't have been wrong
+
         // ---------------------------------------
         // In case the client passes an ID in the
         // request body, we set the id to null to make
