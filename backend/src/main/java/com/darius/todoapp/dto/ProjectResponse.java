@@ -3,10 +3,10 @@ package com.darius.todoapp.dto;
 public class ProjectResponse {
 
     // Fields
-    private int id;
+    private Long id;
     private String name;
-    private int userId;
-    private String userName;
+    private Long userId;
+    private String username;
 
 
     // Constructors
@@ -14,16 +14,16 @@ public class ProjectResponse {
 
     }
 
-    public ProjectResponse(int id, String name, int userId, String userName) {
+    public ProjectResponse(Long id, String name, Long userId, String username) {
         this.id = id;
         this.name = name;
         this.userId = userId;
-        this.userName = userName;
+        this.username = username;
     }
 
 
     // Setters and getters
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -31,15 +31,15 @@ public class ProjectResponse {
         return name;
     }
 
-    public int getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -47,11 +47,11 @@ public class ProjectResponse {
         this.name = name;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
