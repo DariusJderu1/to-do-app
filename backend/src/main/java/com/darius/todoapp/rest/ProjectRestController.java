@@ -3,7 +3,10 @@ package com.darius.todoapp.rest;
 import com.darius.todoapp.dto.ProjectRequest;
 import com.darius.todoapp.dto.ProjectResponse;
 import com.darius.todoapp.entity.Project;
+import com.darius.todoapp.entity.User;
 import com.darius.todoapp.service.ProjectService;
+import com.darius.todoapp.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,19 +19,22 @@ public class ProjectRestController {
 
     // Fields
     private final ProjectService projectService;
+    private final UserService userService;
 
 
     // Constructors
-    public ProjectRestController(ProjectService projectService) {
+    @Autowired
+    public ProjectRestController(ProjectService projectService, UserService userService) {
 
         this.projectService = projectService;
+        this.userService = userService;
     }
 
 
     // Useful functions
 
     // Convert a basic Project to a ProjectResponse
-    public ProjectResponse convertToResponse(Project theProject) {
+    private ProjectResponse convertToResponse(Project theProject) {
 
         return new ProjectResponse(
                 theProject.getId(),
@@ -39,7 +45,7 @@ public class ProjectRestController {
     }
 
     // Convert a list of Projects to a list of ProjectResponse
-    public List<ProjectResponse> convertToResponseList(List<Project> theProjects) {
+    private List<ProjectResponse> convertToResponseList(List<Project> theProjects) {
 
         return theProjects.stream()
                 .map(theProject -> convertToResponse(theProject))
@@ -59,6 +65,19 @@ public class ProjectRestController {
     @PostMapping
     public ProjectResponse addProject(@RequestBody ProjectRequest projectRequest) {
 
-        User
+        User theUser = userService.findById(projectRequest.getUserId());
+
+        // We cannot create a Project that is not related to any user
+        if(theUser == null)
+            throw new RuntimeException("User id not found - " + projectRequest.getUserId());
+
+        Project theProject = new Project(
+                projectRequest.getName(),
+                theUser
+        );
+
+        Project dbProject = projectService.save(theProject);
+
+        return convertToResponse(dbProject);
     }
 }
