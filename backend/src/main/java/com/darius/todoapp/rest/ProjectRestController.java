@@ -101,4 +101,19 @@ public class ProjectRestController {
 
         return convertToResponse(dbProject);
     }
+
+
+    // DELETE Request
+    // Delete a project
+    @DeleteMapping("/{projectId}")
+    public String deleteProject(@PathVariable Long projectId) {
+
+        Project projectToDelete = projectService.findById(projectId);
+        if(projectToDelete == null)
+            throw new RuntimeException("Project id not found - " + projectId);
+
+        projectService.deleteById(projectId);
+
+        return "Deleted the project with the id: " + projectId;
+    }
 }
