@@ -4,9 +4,7 @@ import com.darius.todoapp.dto.ProjectRequest;
 import com.darius.todoapp.dto.ProjectResponse;
 import com.darius.todoapp.entity.Project;
 import com.darius.todoapp.service.ProjectService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -49,6 +47,18 @@ public class ProjectRestController {
     }
 
     // GET Requests
+    // List of all the projects
+    @GetMapping
+    public List<ProjectResponse> findAll() {
 
+        return convertToResponseList(projectService.findAll());
+    }
 
+    // POST Requests
+    // Add a Project
+    @PostMapping
+    public ProjectResponse addProject(@RequestBody ProjectRequest projectRequest) {
+
+        User
+    }
 }

@@ -1,5 +1,6 @@
 package com.darius.todoapp.dao;
 
+import com.darius.todoapp.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -14,9 +15,19 @@ public class UserDAOImpl implements UserDAO {
     // The Class (EntityManager) is a spring bean - available for injection
     private final EntityManager entityManager;
 
+
     // The annotation tells Spring to inject a dependency
     @Autowired
     public UserDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
+    }
+
+
+    // Interface methods
+
+    @Override
+    public User findById(Long id) {
+
+        return entityManager.find(User.class, id);
     }
 }
