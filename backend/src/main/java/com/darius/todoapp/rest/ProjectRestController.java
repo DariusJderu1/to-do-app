@@ -2,6 +2,7 @@ package com.darius.todoapp.rest;
 
 import com.darius.todoapp.dto.ProjectRequest;
 import com.darius.todoapp.dto.ProjectResponse;
+import com.darius.todoapp.dto.ProjectUpdateRequest;
 import com.darius.todoapp.entity.Project;
 import com.darius.todoapp.entity.User;
 import com.darius.todoapp.service.ProjectService;
@@ -52,6 +53,7 @@ public class ProjectRestController {
                 .toList();
     }
 
+
     // GET Requests
     // List of all the projects
     @GetMapping
@@ -59,6 +61,7 @@ public class ProjectRestController {
 
         return convertToResponseList(projectService.findAll());
     }
+
 
     // POST Requests
     // Add a Project
@@ -77,6 +80,24 @@ public class ProjectRestController {
         );
 
         Project dbProject = projectService.save(theProject);
+
+        return convertToResponse(dbProject);
+    }
+
+
+    // PUT
+    // Update a project
+    @PutMapping("/{projectId}")
+    public ProjectResponse updateProject(@PathVariable Long projectId, @RequestBody ProjectUpdateRequest projectUpdateRequest) {
+
+        // We cannot update a project without an existing id
+        Project existingProject = projectService.findById(projectId);
+        if(existingProject == null)
+            throw new RuntimeException("Project id not found - " + projectId);
+
+        existingProject.setName(projectUpdateRequest.getName());
+
+        Project dbProject = projectService.save(existingProject);
 
         return convertToResponse(dbProject);
     }
