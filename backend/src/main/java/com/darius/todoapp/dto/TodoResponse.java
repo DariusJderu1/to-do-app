@@ -6,19 +6,12 @@ public class TodoResponse {
 
     // Fields
     private Long id;
-
     private String title;
-
     private String description;
-
     private LocalDate dueDate;
-
     private boolean completed;
-
     private boolean important;
-
     private Long projectId;
-
     private String projectName;
 
 

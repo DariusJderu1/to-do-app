@@ -92,8 +92,8 @@ public class TodoRestController {
     // Add a todo
     // The @RequestBody annotation tells Spring
     // to take the body of the HTTP request, the JSON
-    // and transform it into a Java Object of type Todo
-    // using Jackson
+    // and transform it into a Java Object of type TodoRequest
+    // (in this case) using Jackson
     @PostMapping
     public TodoResponse addTodo(@RequestBody TodoRequest todoRequest) {
 
@@ -168,9 +168,9 @@ public class TodoRestController {
     // Update a todo with a partial request body
     // Didn't use a classic Map<String, Object and the jsonMapper object
     // because first of all we needed the request of a Todo (TodoRequest) not just a Todo,
-    // from obvious reasons (we didn't want the json of the todo to have a complete project json field in it).
-    // Second of all we had to create a TodoPatchRequest so we can make use of Boolean
-    // (instead of boolean) class. If we used boolean, because of its primitive nature,
+    // from obvious reasons (we didn't want the json of the Todo to have a complete project json field in it).
+    // Second of all we had to create a TodoPatchRequest (instead of TodoRequest) so we can make use of Boolean
+    // (instead of boolean) data type. If we used boolean, because of its primitive nature,
     // if the client didn't send explicit values for those 2 fields (completed and important)
     // the object created in TodoRequest would have had false as default for those two fields
     // and results in a mistake. The PATCH request is meant to be able to send whatever fields you wish
