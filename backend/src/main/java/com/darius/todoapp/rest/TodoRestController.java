@@ -5,6 +5,7 @@ import com.darius.todoapp.dto.TodoRequest;
 import com.darius.todoapp.dto.TodoResponse;
 import com.darius.todoapp.entity.Project;
 import com.darius.todoapp.entity.Todo;
+import com.darius.todoapp.exception.ResourceNotFoundException;
 import com.darius.todoapp.service.ProjectService;
 import com.darius.todoapp.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,7 +117,7 @@ public class TodoRestController {
 
         // We cannot have a todo that is not related to any project
         if(project == null)
-            throw new RuntimeException("Project id not found - " + todoRequest.getProjectId());
+            throw new ResourceNotFoundException("Project id " + todoRequest.getProjectId() + " not found. Cannot create a Todo without an existing Project!");
 
         Todo theTodo = new Todo(
                 todoRequest.getTitle(),
