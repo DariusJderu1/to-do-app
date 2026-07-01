@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    // Not found
+    // 404 Not found
     @ExceptionHandler
     public ResponseEntity<ApiErrorResponse> handleException(ResourceNotFoundException exc) {
 
@@ -23,5 +23,18 @@ public class GlobalExceptionHandler {
         error.setTimeStamp(System.currentTimeMillis());
 
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
+
+    // 400 Bad Request
+    @ExceptionHandler
+    public ResponseEntity<ApiErrorResponse> handleException(BadRequestException exc) {
+
+        ApiErrorResponse error = new ApiErrorResponse();
+
+        error.setStatus(HttpStatus.BAD_REQUEST.value());
+        error.setMessage(exc.getMessage());
+        error.setTimeStamp(System.currentTimeMillis());
+
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 }

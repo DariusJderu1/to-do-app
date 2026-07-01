@@ -5,6 +5,7 @@ import com.darius.todoapp.dto.TodoRequest;
 import com.darius.todoapp.dto.TodoResponse;
 import com.darius.todoapp.entity.Project;
 import com.darius.todoapp.entity.Todo;
+import com.darius.todoapp.exception.BadRequestException;
 import com.darius.todoapp.exception.ResourceNotFoundException;
 import com.darius.todoapp.service.ProjectService;
 import com.darius.todoapp.service.TodoService;
@@ -100,7 +101,7 @@ public class TodoRestController {
 
         // All the things below aren't needed anymore, because
         // we have a TodoRequest that forces the fields, not just
-        // Todo entity where an ID wouldn't have been wrong
+        // Todo entity where an ID passed would have been wrong
 
         // ---------------------------------------
         // In case the client passes an ID in the
@@ -112,6 +113,9 @@ public class TodoRestController {
         // we basically kinda only return the JSON
         // the client has sent but with the updated ID
         // return todoService.save(theTodo);
+
+        if(todoRequest.getProjectId() == null)
+            throw new BadRequestException("projectId is required. Cannot create a todo without a project!");
 
         Project project = projectService.findById(todoRequest.getProjectId());
 
