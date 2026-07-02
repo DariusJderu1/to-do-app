@@ -1,4 +1,5 @@
 import Header from "./app/Header.jsx";
+import Sidebar from "./app/Sidebar.jsx";
 
 function App() {
     
@@ -6,6 +7,8 @@ function App() {
 
         <div>
             <Header />
+
+            <Sidebar />
         </div>
     );
 }
