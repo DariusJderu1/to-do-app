@@ -5,6 +5,8 @@ import com.darius.todoapp.dto.ProjectResponse;
 import com.darius.todoapp.dto.ProjectUpdateRequest;
 import com.darius.todoapp.entity.Project;
 import com.darius.todoapp.entity.User;
+import com.darius.todoapp.exception.BadRequestException;
+import com.darius.todoapp.exception.ResourceNotFoundException;
 import com.darius.todoapp.service.ProjectService;
 import com.darius.todoapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,11 +70,16 @@ public class ProjectRestController {
     @PostMapping
     public ProjectResponse addProject(@RequestBody ProjectRequest projectRequest) {
 
-        User theUser = userService.findById(projectRequest.getUserId());
+        if(projectRequest.getUserId() == null)
+            throw new BadRequestException("userId field is mandatory in order to create a new project!");
 
+        User theUser = userService.findById(projectRequest.getUserId());
         // We cannot create a Project that is not related to any user
         if(theUser == null)
-            throw new RuntimeException("User id not found - " + projectRequest.getUserId());
+            throw new ResourceNotFoundException("The user with the id: " + projectRequest.getUserId() + " was not found!");
+
+        if(projectRequest.getName() == null || projectRequest.getName().isBlank())
+            throw new BadRequestException("name field is mandatory in order to create a new project!");
 
         Project theProject = new Project(
                 projectRequest.getName(),
