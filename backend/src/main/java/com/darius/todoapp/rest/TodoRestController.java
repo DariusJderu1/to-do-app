@@ -242,9 +242,8 @@ public class TodoRestController {
     public String deleteTodo(@PathVariable Long todoId) {
 
         Todo theTodo = todoService.findById(todoId);
-
         if(theTodo == null)
-            throw new RuntimeException("Todo id not found - " + todoId);
+            throw new ResourceNotFoundException("Todo with the Id " + todoId + " not found!");
 
         todoService.deleteById(todoId);
 
