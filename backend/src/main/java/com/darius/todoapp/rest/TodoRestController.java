@@ -117,6 +117,9 @@ public class TodoRestController {
         if(todoRequest.getProjectId() == null)
             throw new BadRequestException("projectId is required. Cannot create a todo without a project!");
 
+        if(todoRequest.getTitle() == null || todoRequest.getTitle().isBlank())
+            throw new BadRequestException("title is required. Cannot create a todo without a title!");
+
         Project project = projectService.findById(todoRequest.getProjectId());
 
         // We cannot have a todo that is not related to any project
