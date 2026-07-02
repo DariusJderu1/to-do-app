@@ -196,11 +196,13 @@ public class TodoRestController {
 
         // If there is no todo, we cannot update anything
         if(existingTodo == null)
-            throw new RuntimeException("Todo id not found - " + todoId);
+            throw new ResourceNotFoundException("todoId " + todoId + " not found. Cannot update a Todo without an existing Id!");
 
 
         // Create the Patch - complete the todo
-        if(patchRequest.getTitle() != null)
+        if(patchRequest.getTitle() != null && patchRequest.getTitle().isBlank())
+            throw new BadRequestException("title field cannot be empty!");
+        else if(patchRequest.getTitle() != null)
             existingTodo.setTitle(patchRequest.getTitle());
 
         if(patchRequest.getDescription() != null)
@@ -220,7 +222,7 @@ public class TodoRestController {
             Project project = projectService.findById(patchRequest.getProjectId());
 
             if(project == null)
-                throw new RuntimeException("Project id not found - " + patchRequest.getProjectId());
+                throw new ResourceNotFoundException("projectId " + patchRequest.getProjectId() + " not found!");
 
             else
                 existingTodo.setProject(project);
