@@ -1,13 +1,13 @@
-import Header from "./"
+import Header from "./app/Header.jsx";
 
 function App() {
+    
+    return (
 
-  return (
-
-    <div>
-      <Header />
-    </div>
-  );
+        <div>
+            <Header />
+        </div>
+    );
 }
 
 export default App;
