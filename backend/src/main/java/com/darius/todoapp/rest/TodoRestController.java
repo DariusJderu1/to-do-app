@@ -154,12 +154,19 @@ public class TodoRestController {
         Todo existingTodo = todoService.findById(todoId);
 
         if(existingTodo == null)
-            throw new RuntimeException("Todo id not found - " + todoId);
+            throw new ResourceNotFoundException("todoId " + todoId + " not found. Cannot update a Todo without an existing Id!");
+
+        if(todoRequest.getProjectId() == null)
+            throw new BadRequestException("You must provide a projectId in order to update a Todo!");
 
         Project project = projectService.findById(todoRequest.getProjectId());
 
         if(project == null)
-            throw new RuntimeException("Project id not found - " + todoRequest.getProjectId());
+            throw new ResourceNotFoundException("projectId " + todoRequest.getProjectId() + " not found. Cannot update a Todo without an existing Project!");
+
+        if(todoRequest.getTitle() == null || todoRequest.getTitle().isBlank())
+            throw new BadRequestException("title is required. Cannot update a todo without a title!");
+
 
         existingTodo.setTitle(todoRequest.getTitle());
         existingTodo.setDescription(todoRequest.getDescription());
@@ -174,7 +181,7 @@ public class TodoRestController {
     }
 
     // Update a todo with a partial request body
-    // Didn't use a classic Map<String, Object and the jsonMapper object
+    // Didn't use a classic Map<String, Object> and the jsonMapper object
     // because first of all we needed the request of a Todo (TodoRequest) not just a Todo,
     // from obvious reasons (we didn't want the json of the Todo to have a complete project json field in it).
     // Second of all we had to create a TodoPatchRequest (instead of TodoRequest) so we can make use of Boolean
