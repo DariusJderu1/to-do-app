@@ -121,7 +121,7 @@ public class ProjectRestController {
 
         Project projectToDelete = projectService.findById(projectId);
         if(projectToDelete == null)
-            throw new RuntimeException("Project id not found - " + projectId);
+            throw new ResourceNotFoundException("Project id not found - " + projectId);
 
         projectService.deleteById(projectId);
 
