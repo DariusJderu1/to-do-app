@@ -1,4 +1,5 @@
-import { FaPlus } from "react-icons/fa6";
+import ProjectList from "../sidebar/ProjectList.jsx";
+import AddProjectButton from "../sidebar/AddProjectButton.jsx";
 import { TiThMenu } from "react-icons/ti";
 
 function Sidebar() {
@@ -7,18 +8,15 @@ function Sidebar() {
 
         <aside>
             <span>Home</span>
-
             <a href="#">All Tasks</a>
-
             <a href="#">Today</a>
-
             <a href="#">Next 7 Days</a>
-
             <a href="#">Important</a>
 
             <span>Projects</span>
 
-            <span><FaPlus /></span>
+            <ProjectList />
+            <AddProjectButton />
         </aside>
     );
 }
