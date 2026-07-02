@@ -100,7 +100,11 @@ public class ProjectRestController {
         // We cannot update a project without an existing id
         Project existingProject = projectService.findById(projectId);
         if(existingProject == null)
-            throw new RuntimeException("Project id not found - " + projectId);
+            throw new ResourceNotFoundException("Project with the id: " + projectId + " not found!");
+
+        if(projectUpdateRequest.getName() == null || projectUpdateRequest.getName().isBlank())
+            throw new BadRequestException("name field is mandatory in order to update a project!");
+
 
         existingProject.setName(projectUpdateRequest.getName());
 
