@@ -36,19 +36,26 @@
     align-items: center;
     justify-content: center;
 
-    width: 2.75rem;
-    height: 2.75rem;
+    width: clamp(3rem, 2.85rem + 0.65vw, 3.25rem);
+    height: clamp(3rem, 2.85rem + 0.65vw, 3.25rem);
+    padding: 0.5rem;
 
     color: var(--color-text);
     background-color: transparent;
     border: 0;
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
 
     font-size: var(--fs-xl);
 
     transition:
         color 150ms ease,
         background-color 150ms ease;
+}
+.iconButton svg {
+
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
 }
 .iconButton:hover {
 
