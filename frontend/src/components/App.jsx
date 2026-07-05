@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "./app/Header.jsx";
 import Sidebar from "./app/Sidebar.jsx";
+import Footer from "./app/Footer.jsx";
 import styles from "../styles/App.module.css";
 
 function App() {
@@ -18,6 +19,8 @@ function App() {
             <Header onToggleDrawer={handleDrawerButtonClick} />
 
             <Sidebar isOpenDrawer={isOpenDrawer} />
+
+            <Footer />
         </div>
     );
 }
