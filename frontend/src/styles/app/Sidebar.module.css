@@ -147,3 +147,19 @@
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
 }
+ 
+
+/* Media queries */
+@media(min-width: 769px) {
+
+    .sidebarLayout {
+
+        position: static;
+
+        transform: none;
+        visibility: visible;
+        pointer-events: auto;
+        transition: none;
+    }   
+}
+/* Media queries */
