@@ -7,14 +7,31 @@ function Sidebar() {
 
         <aside>
             <span>Home</span>
-            <a href="#">All Tasks</a>
-            <a href="#">Today</a>
-            <a href="#">Next 7 Days</a>
-            <a href="#">Important</a>
+
+            <a href="#">
+                <span aria-hidden="true">📋</span>
+                <span>All Tasks</span>
+            </a>
+
+            <a href="#">
+                <span aria-hidden="true">📅</span>
+                <span>Today</span>
+            </a>
+
+            <a href="#">
+                <span aria-hidden="true">🗓️</span>
+                <span>Next 7 Days</span>
+            </a>
+
+            <a href="#">
+                <span aria-hidden="true">⭐</span>
+                <span>Important</span>
+            </a>
 
             <span>Projects</span>
 
             <ProjectList />
+            
             <AddProjectButton />
         </aside>
     );
