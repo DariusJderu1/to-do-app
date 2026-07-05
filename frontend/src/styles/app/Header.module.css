@@ -5,8 +5,8 @@
     align-items: center;
 
     width: 100%;
-    min-height: 4rem;
-    padding: 0.625rem clamp(0.875rem, 4vw, 2rem);
+    min-height: 4.75rem;
+    padding: 0.75rem clamp(1rem, 4vw, 2rem);
 
     background-color: var(--color-surface);
     border-bottom: 1px solid var(--color-primary);
@@ -19,7 +19,7 @@
     justify-content: center;
 
     color: var(--color-text);
-    font-size: var(--fs-xl);
+    font-size: var(--fs-2xl);
     font-weight: 800;
     line-height: 1;
     text-decoration: none;
@@ -44,7 +44,7 @@
     border: 0;
     border-radius: 0.5rem;
 
-    font-size: var(--fs-lg);
+    font-size: var(--fs-xl);
 
     transition:
         color 150ms ease,
@@ -67,8 +67,8 @@
 
     .headerLayout {
 
-        min-height: 4.5rem;
-        padding-inline: clamp(1.5rem, 3vw, 3rem);
+        min-height: 5.25rem;
+        padding: 0.875rem clamp(1.5rem, 3vw, 3rem);
     }
 }
 /* MEDIA QUERIES */ 
