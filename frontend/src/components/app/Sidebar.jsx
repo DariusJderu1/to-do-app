@@ -1,6 +1,5 @@
 import ProjectList from "../sidebar/ProjectList.jsx";
 import AddProjectButton from "../sidebar/AddProjectButton.jsx";
-import { TiThMenu } from "react-icons/ti";
 
 function Sidebar() {
 
