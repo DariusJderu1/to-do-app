@@ -17,6 +17,23 @@
     background-color: var(--color-sidebar);
 
     font-size: var(--fs-md);
+
+    transform: translateX(-100%);
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        transform 250ms ease,
+        visibility 0s linear 250ms;
+}
+
+.drawerOpen {
+
+    transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
+
+    transition-delay: 0s;
 }
 /* Sidebar layout */
 
