@@ -15,6 +15,7 @@
 
     color: var(--color-text);
     background-color: var(--color-surface);
+    background-color: var(--color-sidebar);
 
     font-size: var(--fs-md);
 }
@@ -24,7 +25,7 @@
 /* Title */
 .sectionTitle {
 
-    margin-top: 1.25rem;
+    margin-top: 1.5rem;
     padding: 0 0.5rem 0.625rem;
 
     color: var(--color-text);

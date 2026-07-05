@@ -11,7 +11,8 @@
 
     /* Colors */
     --color-bg: #111c2a; /* Main background */
-    --color-surface: #19283a; /* Sidebar and header */
+    --color-surface: #19283a; /* Header */
+    --color-sidebar: #121f2f; /* Sidebar */
     --color-surface-light: #22364a; /* Cards and tasks */
 
     --color-primary: #20b8a6; /* Buttons and active elements */
