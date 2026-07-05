@@ -10,9 +10,9 @@
     --fs-3xl: clamp(2.5rem, 1.95rem + 2vw, 3.75rem);
 
     /* Colors */
-    --color-bg: #111c2a; /* Main background */
-    --color-surface: #19283a; /* Header */
-    --color-sidebar: #121f2f; /* Sidebar */
+    --color-bg: #162536; /* Main background */
+    --color-surface: #1e3246; /* Header */
+    --color-sidebar: #101d2b; /* Sidebar and drawer */
     --color-surface-light: #22364a; /* Cards and tasks */
 
     --color-primary: #20b8a6; /* Buttons and active elements */
