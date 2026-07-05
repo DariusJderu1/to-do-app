@@ -3,12 +3,12 @@ import { IoSettingsSharp } from "react-icons/io5";
 import { Link } from "react-router";
 import styles from "../../styles/app/Header.module.css";
 
-function Header() {
+function Header({onToggleDrawer}) {
 
     return (
         
         <header className={styles.headerLayout}>
-            <button className={styles.iconButton} aria-label="Open navigation menu">
+            <button className={styles.iconButton} aria-label="Open navigation menu" onClick={onToggleDrawer}>
                 <RiMenuUnfold4Line />
             </button>
             

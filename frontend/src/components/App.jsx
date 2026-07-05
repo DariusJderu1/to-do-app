@@ -1,15 +1,23 @@
+import { useState } from "react";
 import Header from "./app/Header.jsx";
 import Sidebar from "./app/Sidebar.jsx";
 import styles from "../styles/App.module.css";
 
 function App() {
+
+    const [isOpenDrawer, setOpenDrawer] = useState(false);
+
+    function handleDrawerButtonClick() {
+
+        setOpenDrawer(!isOpenDrawer);
+    }
     
     return (
 
         <div className={styles.appLayout}>
-            <Header />
+            <Header onToggleDrawer={handleDrawerButtonClick} />
 
-            <Sidebar />
+            <Sidebar isOpenDrawer={isOpenDrawer} />
         </div>
     );
 }
