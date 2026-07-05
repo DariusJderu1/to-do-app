@@ -1,0 +1,126 @@
+/* Sidebar layout */
+.sidebarLayout {
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+
+    padding: 1.25rem 1rem;
+
+    color: var(--color-text);
+    background-color: var(--color-surface);
+
+    font-size: var(--fs-md);
+}
+/* Sidebar layout */
+
+
+/* Title */
+.sectionTitle {
+
+    margin-top: 1.25rem;
+    padding: 0 0.5rem 0.625rem;
+
+    color: var(--color-text);
+    border-bottom: 1.5px solid var(--color-text);
+
+    font-size: var(--fs-lg);
+    font-weight: 700;
+    line-height: 1.2;
+}
+.sectionTitle:first-child {
+
+    margin-top: 0;
+}
+/* Title */
+
+
+/* Navigation */
+.navigation {
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+}
+
+.navigationLink {
+
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+
+    padding: 0.7rem 0.75rem;
+
+    color: var(--color-text);
+    background-color: transparent;
+    border-radius: 0.5rem;
+
+    font-size: var(--fs-md);
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+
+    transition:
+        color 150ms ease,
+        background-color 150ms ease;
+}
+.navigationLink:hover {
+
+    color: var(--color-primary-hover);
+    background-color: var(--color-surface-light);
+}
+.navigationLink:focus-visible {
+
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+/* Navigation */
+
+
+.linkIcon {
+
+    min-width: 1.5rem;
+
+    font-size: var(--fs-lg);
+    line-height: 1;
+    text-align: center;
+}
+
+.sidebarLayout ul {
+
+    margin-block: 0.25rem;
+    padding: 0;
+}
+
+.sidebarLayout button {
+
+    padding: 0.7rem 0.75rem;
+
+    color: var(--color-text);
+    background-color: transparent;
+    border: 0;
+    border-radius: 0.5rem;
+
+    font: inherit;
+    font-weight: 600;
+
+    transition:
+        color 150ms ease,
+        background-color 150ms ease;
+}
+.sidebarLayout button > span {
+
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+.sidebarLayout button:hover {
+
+    color: var(--color-primary-hover);
+    background-color: var(--color-surface-light);
+}
+.sidebarLayout button:focus-visible {
+
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
