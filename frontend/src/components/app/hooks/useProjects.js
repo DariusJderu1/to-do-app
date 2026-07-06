@@ -26,7 +26,7 @@ const initialState = {
     projectList: []
 };
 
-function projectsReducer(state, action) {
+function projectsReducer(currentState, action) {
 
     switch(action.type) {
 
@@ -52,7 +52,7 @@ function projectsReducer(state, action) {
             };
 
         default:
-            return state;
+            return currentState;
     }
 }
 
