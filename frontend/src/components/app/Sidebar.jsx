@@ -1,7 +1,6 @@
 import ProjectList from "../sidebar/ProjectList.jsx";
 import AddProjectButton from "../sidebar/AddProjectButton.jsx";
 import styles from "../../styles/app/Sidebar.module.css";
-// className={styles.sidebarLayout}
 function Sidebar({isOpenDrawer}) {
 
     return (
