@@ -19,7 +19,7 @@ async function getApiResponseBody(url) {
     return data;
 }
 
-const state = {
+const initialState = {
 
     loading: true,
     error: null,
@@ -41,13 +41,13 @@ function projectsReducer(state, action) {
             return {
                 loading: false,
                 error: null,
-                projectList: action.value
+                projectList: action.payload
             };
 
         case "FETCH_ERROR":
             return {
                 loading: false,
-                error: action.value,
+                error: action.payload,
                 projectList: []
             };
 
@@ -56,9 +56,9 @@ function projectsReducer(state, action) {
     }
 }
 
-function useProject() {
+function useProjects() {
 
-    const [state, dispatch] = useReducer(projectsReducer, state);
+    const [state, dispatch] = useReducer(projectsReducer, initialState);
 
     useEffect(() => {
 
@@ -68,15 +68,18 @@ function useProject() {
 
                 const projectList = await getApiResponseBody("http://localhost:8080/api/projects");
 
-                dispatch(state, {type: "FETCH_SUCCESS", value: projectList});
+                dispatch({type: "FETCH_SUCCESS", payload: projectList});
 
             } catch(error) {
 
-                dispatch(state, {type: "FETCH_ERROR", value: error.message});
+                dispatch({type: "FETCH_ERROR", payload: error.message});
             }
 
         })();
-    });
+
+    }, []);
+
+    return state;
 }
 
-export default useProject;
+export default useProjects;
