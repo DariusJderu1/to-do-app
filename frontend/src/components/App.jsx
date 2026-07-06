@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useProjects from "./app/hooks/useProjects.js";
+import ProjectsContext from "./app/context/ProjectsContext.jsx";
 import Header from "./app/Header.jsx";
 import Sidebar from "./app/Sidebar.jsx";
 import Footer from "./app/Footer.jsx";
@@ -20,7 +21,9 @@ function App() {
         <div className={styles.appLayout}>
             <Header onToggleDrawer={handleDrawerButtonClick} />
 
-            <Sidebar isOpenDrawer={isOpenDrawer} />
+            <ProjectsContext value={projectsListData}>
+                <Sidebar isOpenDrawer={isOpenDrawer} />
+            </ProjectsContext>
 
             <Footer />
         </div>
