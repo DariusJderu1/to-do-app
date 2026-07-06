@@ -160,6 +160,10 @@
         visibility: visible;
         pointer-events: auto;
         transition: none;
+
+        flex: 1;
+
+        width: clamp(18rem, 20vw, 24rem);
     }   
 }
 /* Media queries */
