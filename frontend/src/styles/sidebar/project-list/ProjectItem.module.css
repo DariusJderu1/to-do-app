@@ -1,0 +1,97 @@
+.projectItem {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+
+    width: 100%;
+    min-width: 0;
+    padding: 0.625rem 0.75rem;
+
+    color: var(--color-text);
+    background-color: transparent;
+    border-radius: 0.5rem;
+
+    transition: background-color 150ms ease;
+}
+.projectItem:hover,
+.projectItem:focus-within {
+
+    background-color: var(--color-surface-light);
+}
+
+.projectInformation {
+
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    min-width: 0;
+    flex: 1;
+}
+
+.projectIcon {
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 1.5rem;
+
+    color: var(--color-primary);
+    font-size: var(--fs-md);
+}
+
+.projectName {
+
+    overflow: hidden;
+
+    font-size: var(--fs-md);
+    font-weight: 600;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.menuButton {
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2rem;
+    height: 2rem;
+    padding: 0.375rem;
+
+    flex-shrink: 0;
+
+    color: var(--color-text-muted);
+    background-color: transparent;
+    border: 0;
+    border-radius: 0.375rem;
+
+    font-size: var(--fs-md);
+
+    transition:
+        color 150ms ease,
+        background-color 150ms ease;
+}
+
+.menuButton:hover {
+
+    color: var(--color-primary-hover);
+    background-color: var(--color-sidebar);
+}
+
+.menuButton:focus-visible {
+
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+.menuButton svg {
+
+    width: 1em;
+    height: 1em;
+}
