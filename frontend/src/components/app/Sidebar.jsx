@@ -1,5 +1,5 @@
 import ProjectList from "../sidebar/ProjectList.jsx";
-import AddProjectButton from "../sidebar/AddProjectButton.jsx";
+import AddProjectTaskButton from "../ui/AddProjectTaskButton.jsx";
 import styles from "../../styles/app/Sidebar.module.css";
 
 function Sidebar({isOpenDrawer}) {
@@ -37,7 +37,7 @@ function Sidebar({isOpenDrawer}) {
                 <ProjectList />
             </nav>
 
-            <AddProjectButton />
+            <AddProjectTaskButton content={"Add Project"} />
         </aside>
     );
 }

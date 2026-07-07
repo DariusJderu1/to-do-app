@@ -1,14 +1,14 @@
 import { FaPlus } from "react-icons/fa6";
-import styles from "../../styles/sidebar/AddProjectButton.module.css";
+import styles from "../../styles/ui/AddProjectTaskButton.module.css";
 
-function AddProjectButton() {
+function AddProjectButton({content}) {
 
     return (
 
         <button className={styles.addProjectButton}> 
             <span className={styles.buttonContent}>
                 <FaPlus aria-hidden="true" />
-                <span>Add Project</span>
+                <span>{content}</span>
             </span>
         </button>
     );
