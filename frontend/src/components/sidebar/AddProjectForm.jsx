@@ -40,6 +40,8 @@ function AddProjectForm({handleOpenForm, openForm}) {
             const serverResponse = await addProject("http://localhost:8080/api/projects", projectName);
             console.log("Project added.\n" + serverResponse);
 
+            handleOpenForm(!openForm);
+
         } catch(error) {
 
             alert(error);
@@ -67,7 +69,7 @@ function AddProjectForm({handleOpenForm, openForm}) {
                 />
 
                 <div className={styles.formActions}>
-                    <AddButton handleOpenForm={handleOpenForm} openForm={openForm} handleRequest={handleAddProjectRequest}/>
+                    <AddButton />
                     <CancelButton handleOpenForm={handleOpenForm} openForm={openForm} />
                 </div>
             </form>

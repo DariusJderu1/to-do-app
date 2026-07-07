@@ -1,20 +1,12 @@
 import styles from "../../styles/ui/ActionButton.module.css";
 
-function AddButton({handleOpenForm, openForm, handleRequest}) {
-
-    function handleOnClick() {
-
-        handleRequest();
-
-        handleOpenForm(!openForm);
-    }
+function AddButton() {
 
     return (
 
         <button 
             className={`${styles.actionButton} ${styles.addButton}`} 
             type="submit"
-            onClick={handleOnClick}
         >
             Add
         </button>
