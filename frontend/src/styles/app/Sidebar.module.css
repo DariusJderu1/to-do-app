@@ -114,39 +114,6 @@
     margin-block: 0.25rem;
     padding: 0;
 }
-
-.sidebarLayout button {
-
-    padding: 0.7rem 0.75rem;
-
-    color: var(--color-text);
-    background-color: transparent;
-    border: 0;
-    border-radius: 0.5rem;
-
-    font: inherit;
-    font-weight: 600;
-
-    transition:
-        color 150ms ease,
-        background-color 150ms ease;
-}
-.sidebarLayout button > span {
-
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-.sidebarLayout button:hover {
-
-    color: var(--color-primary-hover);
-    background-color: var(--color-surface-light);
-}
-.sidebarLayout button:focus-visible {
-
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
-}
  
 
 /* Media queries */
