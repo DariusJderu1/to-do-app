@@ -1,0 +1,49 @@
+.actionButton {
+
+    min-width: 4.5rem;
+    padding: 0.45rem 1rem;
+
+    font-family: inherit;
+    font-size: var(--fs-sm);
+    font-weight: 700;
+
+    color: var(--color-text);
+
+    border: none;
+    border-radius: 0.25rem;
+
+    transition:
+        background-color 150ms ease,
+        transform 150ms ease;
+}
+.actionButton:hover {
+
+    transform: translateY(-1px);
+}
+.actionButton:active {
+
+    transform: translateY(0);
+}
+.actionButton:focus-visible {
+
+    outline: 0.125rem solid var(--color-text);
+    outline-offset: 0.125rem;
+}
+
+.addButton {
+
+    background-color: var(--color-add);
+}
+.addButton:hover {
+
+    background-color: var(--color-add-hover);
+}
+
+.cancelButton {
+
+    background-color: var(--color-cancel);
+}
+.cancelButton:hover {
+
+    background-color: var(--color-cancel-hover);
+}

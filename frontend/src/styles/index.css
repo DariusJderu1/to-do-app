@@ -21,6 +21,12 @@
     --color-text: #f4f7fa; /* Main text */
     --color-text-muted: #9cabbc; /* Secondary text */
 
+    --color-add: #16a34a;
+    --color-add-hover: #15803d;
+
+    --color-cancel: #dc2626;
+    --color-cancel-hover: #b91c1c;
+
     --color-border: #30465c; /* Borders and separators */
 
     /* Fonts */
