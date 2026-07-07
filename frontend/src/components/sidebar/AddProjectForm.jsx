@@ -1,4 +1,6 @@
 import { FaArrowUpRightDots } from "react-icons/fa6";
+import AddButton from "../ui/AddButton.jsx";
+import CancelButton from "../ui/CancelButton.jsx";
 
 function AddProjectForm() {
 
@@ -11,7 +13,8 @@ function AddProjectForm() {
                 <input type="text" />
 
                 <div>
-                    
+                    <AddButton />
+                    <CancelButton />
                 </div>
             </form>
         </div>
