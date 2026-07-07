@@ -1,8 +1,12 @@
+import { useState } from "react";
 import ProjectList from "../sidebar/ProjectList.jsx";
 import AddProjectTaskButton from "../ui/AddProjectTaskButton.jsx";
+import AddProjectForm from "../sidebar/AddProjectForm.jsx";
 import styles from "../../styles/app/Sidebar.module.css";
 
 function Sidebar({isOpenDrawer}) {
+
+    const [openForm, setOpenForm] = useState(false);
 
     return (
 
@@ -37,7 +41,9 @@ function Sidebar({isOpenDrawer}) {
                 <ProjectList />
             </nav>
 
-            <AddProjectTaskButton content={"Add Project"} />
+            {!openForm ? 
+                <AddProjectTaskButton text={"Add Project"} handleOpenForm={setOpenForm} openForm={openForm} /> :
+                <AddProjectForm />}
         </aside>
     );
 }
