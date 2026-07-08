@@ -3,13 +3,22 @@ import styles from "../../styles/ui/ActionsMenu.module.css";
 
 function ActionsMenu({firstButtonText, currentProjectId, openMenuProjectId, setOpenMenuProjectId}) {
 
+    function handleClick() {
+
+        if(currentProjectId === openMenuProjectId)
+            setOpenMenuProjectId(null);
+
+        else
+            setOpenMenuProjectId(currentProjectId);
+    }
+
     return (
 
         <div className={styles.actionsMenuWrapper}>
             <button 
                 className={styles.menuButton} 
                 aria-label="Open actions menu"
-                onClick={() => setOpenMenuProjectId(currentProjectId)}
+                onClick={handleClick}
             >
                 <BsThreeDots aria-hidden="true" />
             </button>
