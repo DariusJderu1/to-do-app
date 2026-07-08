@@ -1,6 +1,8 @@
+import { useContext } from "react";
 import { FaArrowUpRightDots } from "react-icons/fa6";
 import AddButton from "../ui/AddButton.jsx";
 import CancelButton from "../ui/CancelButton.jsx";
+import ProjectsContext from "../app/context/ProjectsContext.jsx";
 import styles from "../../styles/sidebar/AddProjectForm.module.css";
 
 async function addProject(url, projectName) {
@@ -28,6 +30,8 @@ async function addProject(url, projectName) {
 
 function AddProjectForm({handleOpenForm, openForm}) {
 
+    const projectListData = useContext(ProjectsContext);
+
     async function handleAddProjectRequest(e) {
 
         e.preventDefault();
@@ -41,6 +45,7 @@ function AddProjectForm({handleOpenForm, openForm}) {
             console.log("Project added.", serverResponse);
 
             handleOpenForm(!openForm);
+            projectListData.handleAddNewProject(serverResponse);
 
         } catch(error) {
 

@@ -6,10 +6,11 @@ import styles from "../../styles/sidebar/ProjectList.module.css";
 function ProjectList() {
 
     const projectsListData = useContext(ProjectsContext);
+    const currentState = projectsListData.state;
 
-    const isLoading = projectsListData.loading;
-    const errorMessage = projectsListData.error;
-    const projectsList = projectsListData.projectList;
+    const isLoading = currentState.loading;
+    const errorMessage = currentState.error;
+    const projectsList = currentState.projectList;
 
     
     if(isLoading)

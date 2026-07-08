@@ -51,6 +51,13 @@ function projectsReducer(currentState, action) {
                 projectList: []
             };
 
+        case "ADD_NEW_PROJECT":
+            return {
+                loading: false,
+                error: null,
+                projectList: [...currentState.projectList, action.payload]
+            }
+
         default:
             return currentState;
     }
@@ -59,6 +66,11 @@ function projectsReducer(currentState, action) {
 function useProjects() {
 
     const [state, dispatch] = useReducer(projectsReducer, initialState);
+
+    function handleAddNewProject(newProject) {
+
+        dispatch({type: "ADD_NEW_PROJECT", payload: newProject});
+    }
 
     useEffect(() => {
 
@@ -79,7 +91,7 @@ function useProjects() {
 
     }, []);
 
-    return state;
+    return {state, handleAddNewProject};
 }
 
 export default useProjects;
