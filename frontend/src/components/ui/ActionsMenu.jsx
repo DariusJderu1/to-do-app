@@ -5,14 +5,14 @@ function ActionsMenu({firstButtonText}) {
 
     return (
 
-        <div>
-            <button className={styles.menuButton}>
+        <div className={styles.actionsMenuWrapper}>
+            <button className={styles.menuButton} aria-label="Open acitons menu">
                 <BsThreeDots aria-hidden="true" />
             </button>
             
-            <div>
-                <button>{firstButtonText}</button>
-                <button>Delete</button>
+            <div className={styles.actionsMenu}>
+                <button className={styles.actionButton}>{firstButtonText}</button>
+                <button className={`${styles.actionButton} ${styles.deleteButton}`}>Delete</button>
             </div>
         </div>
     );

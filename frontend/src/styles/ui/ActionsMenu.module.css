@@ -1,3 +1,14 @@
+/* Wrapper */
+.actionsMenuWrapper {
+
+    position: relative;
+
+    display: inline-flex;
+    flex-shrink: 0;
+}
+/* Wrapper */
+
+/* 3 points button */
 .menuButton {
 
     display: inline-flex;
@@ -39,3 +50,72 @@
     width: 1em;
     height: 1em;
 }
+/* 3 points button */
+
+
+/* Menu */
+.actionsMenu {
+
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 0.375rem);
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+
+    min-width: 6.5rem;
+    padding: 0.25rem;
+
+    background-color: var(--color-surface-light);
+    border: 1px solid var(--color-border);
+    border-radius: 0.375rem;
+
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 30%);
+}
+
+.actionButton {
+
+    width: 100%;
+    padding: 0.5rem 0.625rem;
+
+    color: var(--color-text);
+    background-color: transparent;
+
+    border: 0;
+    border-radius: 0.25rem;
+
+    font-family: inherit;
+    font-size: var(--fs-sm);
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: left;
+
+    transition:
+        color 150ms ease,
+        background-color 150ms ease;
+}
+
+.actionButton:hover {
+
+    color: var(--color-primary-hover);
+    background-color: var(--color-sidebar);
+}
+
+.actionButton:focus-visible {
+
+    outline: 2px solid var(--color-primary);
+    outline-offset: -2px;
+}
+
+.deleteButton {
+
+    color: var(--color-delete);
+}
+
+.deleteButton:hover {
+
+    color: var(--color-text);
+    background-color: var(--color-cancel);
+}
+/* Menu */
