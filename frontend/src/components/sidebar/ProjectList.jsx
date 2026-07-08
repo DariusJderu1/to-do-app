@@ -1,11 +1,13 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ProjectItem from "./project-list/ProjectItem.jsx";
 import ProjectsContext from "../app/context/ProjectsContext.jsx";
 import styles from "../../styles/sidebar/ProjectList.module.css";
 
 function ProjectList() {
     
-    const [openMenu, setOpenMenu] = useState(false);
+    // Hooks
+    const [openMenuProjectId, setOpenMenuProjectId] = useState(null);
+
 
     const projectsListData = useContext(ProjectsContext);
     const currentState = projectsListData.state;
@@ -14,7 +16,22 @@ function ProjectList() {
     const errorMessage = currentState.error;
     const projectsList = currentState.projectList;
 
+    // function handleOpenMenu() {
+
+    //     if(openMenu)
+    //         setOpenMenu(false);
+    // }
+
+    // useEffect(() => {
+
+    //     document.addEventListener("click", handleOpenMenu);
+
+    //     return () => document.removeEventListener("click", handleOpenMenu);
+
+    // }, []);
+
     
+    // Component returns
     if(isLoading)
         return null;
 
@@ -46,8 +63,8 @@ function ProjectList() {
                 return <ProjectItem 
                             key={project.id} 
                             projectData={project} 
-                            openMenu={openMenu}
-                            isOpenMenu={openMenu}
+                            openMenuProjectId={openMenuProjectId}
+                            setOpenMenuProjectId={setOpenMenuProjectId}
                         />
             })}
         </ul>
