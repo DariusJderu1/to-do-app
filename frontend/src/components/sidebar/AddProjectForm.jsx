@@ -38,7 +38,7 @@ function AddProjectForm({handleOpenForm, openForm}) {
         try {
 
             const serverResponse = await addProject("http://localhost:8080/api/projects", projectName);
-            console.log("Project added.\n" + serverResponse);
+            console.log("Project added.", serverResponse);
 
             handleOpenForm(!openForm);
 
