@@ -18,6 +18,13 @@
 
     font-size: var(--fs-md);
 
+    min-height: 0;
+
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+
     transform: translateX(-100%);
     visibility: hidden;
     pointer-events: none;
@@ -25,6 +32,23 @@
     transition:
         transform 250ms ease,
         visibility 0s linear 250ms;
+}
+.sidebarLayout:hover {
+
+    scrollbar-color: var(--color-border) transparent;
+}
+.sidebarLayout::-webkit-scrollbar {
+
+    width: 0.4rem;
+}
+.sidebarLayout::-webkit-scrollbar-thumb {
+
+    background-color: transparent;
+    border-radius: 999px;
+}
+.sidebarLayout:hover::-webkit-scrollbar-thumb {
+
+    background-color: var(--color-border);
 }
 
 .drawerOpen {
