@@ -1,7 +1,7 @@
 import { BsThreeDots } from "react-icons/bs";
 import styles from "../../styles/ui/ActionsMenu.module.css";
 
-function ActionsMenu({firstButtonText}) {
+function ActionsMenu({firstButtonText, isOpenMenu}) {
 
     return (
 
@@ -10,10 +10,13 @@ function ActionsMenu({firstButtonText}) {
                 <BsThreeDots aria-hidden="true" />
             </button>
             
-            <div className={styles.actionsMenu}>
-                <button className={styles.actionButton}>{firstButtonText}</button>
-                <button className={`${styles.actionButton} ${styles.deleteButton}`}>Delete</button>
-            </div>
+            {isOpenMenu ?
+                (<div className={styles.actionsMenu}>
+                    <button className={styles.actionButton}>{firstButtonText}</button>
+                    <button className={`${styles.actionButton} ${styles.deleteButton}`}>Delete</button>
+                </div>) :
+                null}
+            
         </div>
     );
 }

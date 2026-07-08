@@ -2,7 +2,7 @@ import { FaArrowUpRightDots } from "react-icons/fa6";
 import ActionsMenu from "../../ui/ActionsMenu.jsx";
 import styles from "../../../styles/sidebar/project-list/ProjectItem.module.css";
 
-function ProjectItem({projectData}) {
+function ProjectItem({projectData, isOpenMenu}) {
 
     return (
 
@@ -17,7 +17,7 @@ function ProjectItem({projectData}) {
                 </span>
             </div>
 
-            <ActionsMenu firstButtonText={"Rename"}/>
+            <ActionsMenu firstButtonText={"Rename"} isOpenMenu={isOpenMenu}/>
         </li>
     );
 }

@@ -1,9 +1,11 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import ProjectItem from "./project-list/ProjectItem.jsx";
 import ProjectsContext from "../app/context/ProjectsContext.jsx";
 import styles from "../../styles/sidebar/ProjectList.module.css";
 
 function ProjectList() {
+    
+    const [openMenu, setOpenMenu] = useState(false);
 
     const projectsListData = useContext(ProjectsContext);
     const currentState = projectsListData.state;
@@ -41,7 +43,12 @@ function ProjectList() {
         <ul className={styles.projectList}>
             {projectsList.map(project => {
 
-                return <ProjectItem key={project.id} projectData={project} />
+                return <ProjectItem 
+                            key={project.id} 
+                            projectData={project} 
+                            openMenu={openMenu}
+                            isOpenMenu={openMenu}
+                        />
             })}
         </ul>
     );
