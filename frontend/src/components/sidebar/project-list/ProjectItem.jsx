@@ -1,5 +1,5 @@
 import { FaArrowUpRightDots } from "react-icons/fa6";
-import { BsThreeDots } from "react-icons/bs";
+import ActionsMenu from "../../ui/ActionsMenu.jsx";
 import styles from "../../../styles/sidebar/project-list/ProjectItem.module.css";
 
 function ProjectItem({projectData}) {
@@ -17,9 +17,7 @@ function ProjectItem({projectData}) {
                 </span>
             </div>
 
-            <button className={styles.menuButton} aria-label={`Open options for ${projectData.name}`}>
-                <BsThreeDots aria-hidden="true" />
-            </button>
+            <ActionsMenu firstButtonText={"Rename"}/>
         </li>
     );
 }
