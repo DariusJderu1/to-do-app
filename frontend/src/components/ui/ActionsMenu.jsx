@@ -1,9 +1,33 @@
+import { useContext } from "react";
+import ProjectsContext from "../app/context/ProjectsContext.jsx";
 import { BsThreeDots } from "react-icons/bs";
 import styles from "../../styles/ui/ActionsMenu.module.css";
 
+async function deleteProject(url, projectId) {
+
+    const completeUrl = url + "/" + projectId;
+    const response = await fetch(completeUrl, {
+
+        method: "DELETE"
+    });
+
+    if(!response.ok) {
+
+        const errorData = await response.text();
+        throw new Error(errorData);
+    }
+
+    const data = await response.text();
+    
+    return data;
+}
+
 function ActionsMenu({firstButtonText, currentProjectId, openMenuProjectId, setOpenMenuProjectId}) {
     
+    // Hooks
+    const projectListData = useContext(ProjectsContext);
 
+    // Functions
     function handleOpenCloseMenuClick() {
 
         if(currentProjectId === openMenuProjectId)
@@ -11,6 +35,22 @@ function ActionsMenu({firstButtonText, currentProjectId, openMenuProjectId, setO
 
         else
             setOpenMenuProjectId(currentProjectId);
+    }
+
+    async function handleDeleteProjectRequest() {
+
+        try {
+
+            const serverResponse = await deleteProject("http://localhost:8080/api/projects", currentProjectId);
+            console.log(serverResponse);
+
+            setOpenMenuProjectId(null);
+            projectListData.actions.deleteProject(currentProjectId);
+
+        } catch(error) {
+
+            alert(error);
+        }
     }
 
     return (
@@ -33,7 +73,7 @@ function ActionsMenu({firstButtonText, currentProjectId, openMenuProjectId, setO
 
                     <button 
                         className={`${styles.actionButton} ${styles.deleteButton}`}
-                        
+                        onClick={handleDeleteProjectRequest}
                     >
                         Delete
                     </button>
