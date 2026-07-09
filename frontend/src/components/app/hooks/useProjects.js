@@ -67,7 +67,7 @@ function useProjects() {
 
     const [state, dispatch] = useReducer(projectsReducer, initialState);
 
-    function handleAddNewProject(newProject) {
+    function addNewProject(newProject) {
 
         dispatch({type: "ADD_NEW_PROJECT", payload: newProject});
     }
@@ -91,7 +91,7 @@ function useProjects() {
 
     }, []);
 
-    return {state, handleAddNewProject};
+    return {state, addNewProject};
 }
 
 export default useProjects;

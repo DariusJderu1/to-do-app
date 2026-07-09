@@ -31,6 +31,7 @@ async function addProject(url, projectName) {
 function AddProjectForm({handleOpenForm, openForm}) {
 
     const projectListData = useContext(ProjectsContext);
+    
 
     async function handleAddProjectRequest(e) {
 
@@ -45,7 +46,7 @@ function AddProjectForm({handleOpenForm, openForm}) {
             console.log("Project added.", serverResponse);
 
             handleOpenForm(!openForm);
-            projectListData.handleAddNewProject(serverResponse);
+            projectListData.addNewProject(serverResponse);
 
         } catch(error) {
 
