@@ -28,7 +28,7 @@ async function addProject(url, projectName) {
     return data;
 }
 
-function AddProjectForm({handleOpenForm, openForm}) {
+function ProjectForm({handleOpenForm, openForm}) {
 
     const projectListData = useContext(ProjectsContext);
     
@@ -83,4 +83,4 @@ function AddProjectForm({handleOpenForm, openForm}) {
     );
 }
 
-export default AddProjectForm;
+export default ProjectForm;
