@@ -7,28 +7,23 @@ function ProjectList() {
     
     // Hooks
     const [openMenuProjectId, setOpenMenuProjectId] = useState(null);
-
-
     const projectsListData = useContext(ProjectsContext);
-    const currentState = projectsListData.state;
 
+    // Variables
+    const currentState = projectsListData.state;
     const isLoading = currentState.loading;
     const errorMessage = currentState.error;
     const projectsList = currentState.projectList;
 
-    // function handleOpenMenu() {
+    useEffect(() => {
 
-    //     if(openMenu)
-    //         setOpenMenu(false);
-    // }
+        const handleCloseMenu = () => setOpenMenuProjectId(null);
 
-    // useEffect(() => {
+        document.addEventListener("click", handleCloseMenu);
 
-    //     document.addEventListener("click", handleOpenMenu);
+        return () => document.removeEventListener("click", handleCloseMenu);
 
-    //     return () => document.removeEventListener("click", handleOpenMenu);
-
-    // }, []);
+    }, []);
 
     
     // Component returns

@@ -2,6 +2,7 @@ import { BsThreeDots } from "react-icons/bs";
 import styles from "../../styles/ui/ActionsMenu.module.css";
 
 function ActionsMenu({firstButtonText, currentProjectId, openMenuProjectId, setOpenMenuProjectId}) {
+    
 
     function handleClick() {
 
@@ -14,7 +15,10 @@ function ActionsMenu({firstButtonText, currentProjectId, openMenuProjectId, setO
 
     return (
 
-        <div className={styles.actionsMenuWrapper}>
+        <div 
+            className={styles.actionsMenuWrapper}
+            onClick={(e) => e.stopPropagation()}
+        >
             <button 
                 className={styles.menuButton} 
                 aria-label="Open actions menu"
