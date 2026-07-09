@@ -4,7 +4,7 @@ import styles from "../../styles/ui/ActionsMenu.module.css";
 function ActionsMenu({firstButtonText, currentProjectId, openMenuProjectId, setOpenMenuProjectId}) {
     
 
-    function handleClick() {
+    function handleOpenCloseMenuClick() {
 
         if(currentProjectId === openMenuProjectId)
             setOpenMenuProjectId(null);
@@ -22,7 +22,7 @@ function ActionsMenu({firstButtonText, currentProjectId, openMenuProjectId, setO
             <button 
                 className={styles.menuButton} 
                 aria-label="Open actions menu"
-                onClick={handleClick}
+                onClick={handleOpenCloseMenuClick}
             >
                 <BsThreeDots aria-hidden="true" />
             </button>
@@ -30,7 +30,13 @@ function ActionsMenu({firstButtonText, currentProjectId, openMenuProjectId, setO
             {openMenuProjectId === currentProjectId ?
                 (<div className={styles.actionsMenu}>
                     <button className={styles.actionButton}>{firstButtonText}</button>
-                    <button className={`${styles.actionButton} ${styles.deleteButton}`}>Delete</button>
+
+                    <button 
+                        className={`${styles.actionButton} ${styles.deleteButton}`}
+                        
+                    >
+                        Delete
+                    </button>
                 </div>) :
                 null}
             

@@ -46,7 +46,7 @@ function AddProjectForm({handleOpenForm, openForm}) {
             console.log("Project added.", serverResponse);
 
             handleOpenForm(!openForm);
-            projectListData.addNewProject(serverResponse);
+            projectListData.actions.addNewProject(serverResponse);
 
         } catch(error) {
 

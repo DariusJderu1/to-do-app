@@ -58,6 +58,13 @@ function projectsReducer(currentState, action) {
                 projectList: [...currentState.projectList, action.payload]
             }
 
+        case "DELETE_PROJECT":
+            return {
+                loading: false,
+                error: null,
+                projectList: currentState.projectList.filter(project => project.id !== action.payload)
+            }
+
         default:
             return currentState;
     }
@@ -65,12 +72,15 @@ function projectsReducer(currentState, action) {
 
 function useProjects() {
 
+    // Hooks
     const [state, dispatch] = useReducer(projectsReducer, initialState);
 
-    function addNewProject(newProject) {
+    // Functions
+    const addNewProject = (newProject) => dispatch({type: "ADD_NEW_PROJECT", payload: newProject});
 
-        dispatch({type: "ADD_NEW_PROJECT", payload: newProject});
-    }
+    const deleteProject = (projectId) => dispatch({type: "DELETE_PROJECT", payload: projectId});
+    
+
 
     useEffect(() => {
 
@@ -91,7 +101,13 @@ function useProjects() {
 
     }, []);
 
-    return {state, addNewProject};
+    return {
+        state,
+        actions: {
+            addNewProject,
+            deleteProject
+        }
+    }
 }
 
 export default useProjects;
