@@ -28,32 +28,80 @@ async function addProject(url, projectName) {
     return data;
 }
 
-function ProjectForm({handleOpenForm, openForm}) {
+async function updateProject(url, projectId, newProjectName) {
 
+    const completeUrl = url + "/" + projectId;
+
+    const response = await fetch(completeUrl, {
+
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({name: newProjectName}),
+    });
+
+    if(!response.ok) {
+
+        const errorData = await response.json();
+
+        throw new Error(errorData.message);
+    }
+
+    const data = await response.json();
+
+    return data;
+}
+
+function ProjectForm({mode, projectData=null, openForm, handleOpenForm}) {
+
+    // Hooks
     const projectListData = useContext(ProjectsContext);
     
 
+    // Functions
     async function handleAddProjectRequest(e) {
 
         e.preventDefault();
 
         const form = e.target;
-        const projectName = form.elements["projectName"].value;
+        const newProjectName = form.elements["projectName"].value;
 
-        try {
+        if(mode === "add") {
 
-            const serverResponse = await addProject("http://localhost:8080/api/projects", projectName);
-            console.log("Project added.", serverResponse);
+            try {
 
-            handleOpenForm(!openForm);
-            projectListData.actions.addNewProject(serverResponse);
+                const serverResponse = await addProject("http://localhost:8080/api/projects", newProjectName);
+                console.log("Project added.", serverResponse);
 
-        } catch(error) {
+                handleOpenForm(!openForm);
+                projectListData.actions.addNewProject(serverResponse);
 
-            alert(error);
+            } catch(error) {
+
+                alert(error);
+            }
+        }
+        
+        else if(mode === "update") {
+
+            try {
+
+                const serverResponse = await updateProject("http://localhost:8080/api/projects", projectData.id, newProjectName);
+                console.log("Project updated.". serverResponse);
+
+                handleOpenForm(!openForm);
+                projectListData.actions.updateProject(serverResponse);
+
+            } catch(error) {
+
+                alert(error);
+            }
         }
     }
 
+
+    // Returns
     return (
 
         <div className={styles.addProjectForm}>
@@ -75,7 +123,7 @@ function ProjectForm({handleOpenForm, openForm}) {
                 />
 
                 <div className={styles.formActions}>
-                    <AddButton text={"Add"}/>
+                    <AddButton text={mode === "add" ? "Add" : "Rename"} />
                     <CancelButton handleOpenForm={handleOpenForm} openForm={openForm} />
                 </div>
             </form>
