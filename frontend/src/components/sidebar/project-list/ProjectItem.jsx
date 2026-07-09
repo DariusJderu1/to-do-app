@@ -11,8 +11,11 @@ function ProjectItem({projectData, openMenuProjectId, setOpenMenuProjectId}) {
 
 
     // Functions
-    const toggleIsRenaming = () => setIsRenaming(!isRenaming);
+    function toggleIsRenaming() {
 
+        setIsRenaming(true);
+        setOpenMenuProjectId(null);
+    }
 
     // Returns
     if(!isRenaming) {

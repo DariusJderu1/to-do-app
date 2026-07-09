@@ -60,7 +60,7 @@ function ProjectForm({mode, projectData=null, openForm, handleOpenForm}) {
     
 
     // Functions
-    async function handleAddProjectRequest(e) {
+    async function handleProjectFormSubmit(e) {
 
         e.preventDefault();
 
@@ -88,7 +88,7 @@ function ProjectForm({mode, projectData=null, openForm, handleOpenForm}) {
             try {
 
                 const serverResponse = await updateProject("http://localhost:8080/api/projects", projectData.id, newProjectName);
-                console.log("Project updated.". serverResponse);
+                console.log("Project updated.", serverResponse);
 
                 handleOpenForm(!openForm);
                 projectListData.actions.updateProject(serverResponse);
@@ -109,7 +109,7 @@ function ProjectForm({mode, projectData=null, openForm, handleOpenForm}) {
                 <FaArrowUpRightDots />
             </span>
 
-            <form className={styles.form} onSubmit={handleAddProjectRequest}>
+            <form className={styles.form} onSubmit={handleProjectFormSubmit}>
                 <input 
                     className={styles.projectNameInput}
                     type="text" 
