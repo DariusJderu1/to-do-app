@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ProjectList from "../sidebar/ProjectList.jsx";
 import AddProjectTaskButton from "../ui/AddProjectTaskButton.jsx";
-import AddProjectForm from "../sidebar/AddProjectForm.jsx";
+import ProjectForm from "../sidebar/ProjectForm.jsx";
 import styles from "../../styles/app/Sidebar.module.css";
 
 function Sidebar({isOpenDrawer}) {
@@ -43,7 +43,7 @@ function Sidebar({isOpenDrawer}) {
 
             {!openForm ? 
                 <AddProjectTaskButton text={"Add Project"} handleOpenForm={setOpenForm} openForm={openForm} /> :
-                <AddProjectForm handleOpenForm={setOpenForm} openForm={openForm} />}
+                <ProjectForm handleOpenForm={setOpenForm} openForm={openForm} />}
         </aside>
     );
 }
