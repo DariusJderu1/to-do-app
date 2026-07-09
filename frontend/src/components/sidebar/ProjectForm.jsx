@@ -115,6 +115,7 @@ function ProjectForm({mode, projectData=null, openForm, handleOpenForm}) {
                     type="text" 
                     name="projectName"
                     placeholder="Enter Project Name"
+                    defaultValue={mode === "update" ? projectData.name : ""}
                     aria-label="Project name"
                     autoComplete="off"
                     maxLength={50}
