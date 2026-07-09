@@ -10,6 +10,10 @@ function ProjectItem({projectData, openMenuProjectId, setOpenMenuProjectId}) {
     const [isRenaming, setIsRenaming] = useState(false);
 
 
+    // Functions
+    const toggleIsRenaming = () => setIsRenaming(!isRenaming);
+
+
     // Returns
     if(!isRenaming) {
         return (
@@ -30,6 +34,7 @@ function ProjectItem({projectData, openMenuProjectId, setOpenMenuProjectId}) {
                     currentProjectId={projectData.id}
                     openMenuProjectId={openMenuProjectId} 
                     setOpenMenuProjectId={setOpenMenuProjectId}
+                    toggleIsRenaming={toggleIsRenaming}
                 />
             </li>
         );

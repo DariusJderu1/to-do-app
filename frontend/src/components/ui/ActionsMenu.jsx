@@ -22,7 +22,7 @@ async function deleteProject(url, projectId) {
     return data;
 }
 
-function ActionsMenu({firstButtonText, currentProjectId, openMenuProjectId, setOpenMenuProjectId}) {
+function ActionsMenu({firstButtonText, currentProjectId, openMenuProjectId, setOpenMenuProjectId, toggleIsRenaming=null}) {
     
     // Hooks
     const projectListData = useContext(ProjectsContext);
@@ -72,7 +72,12 @@ function ActionsMenu({firstButtonText, currentProjectId, openMenuProjectId, setO
             
             {openMenuProjectId === currentProjectId ?
                 (<div className={styles.actionsMenu}>
-                    <button className={styles.actionButton}>{firstButtonText}</button>
+                    <button 
+                        className={styles.actionButton}
+                        onClick={toggleIsRenaming}
+                    >
+                        {firstButtonText}
+                    </button>
 
                     <button 
                         className={`${styles.actionButton} ${styles.deleteButton}`}
