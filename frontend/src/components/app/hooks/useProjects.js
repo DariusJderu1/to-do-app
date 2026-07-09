@@ -75,11 +75,11 @@ function useProjects() {
     // Hooks
     const [state, dispatch] = useReducer(projectsReducer, initialState);
 
+
     // Functions
     const addNewProject = (newProject) => dispatch({type: "ADD_NEW_PROJECT", payload: newProject});
 
     const deleteProject = (projectId) => dispatch({type: "DELETE_PROJECT", payload: projectId});
-    
 
 
     useEffect(() => {

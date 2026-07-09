@@ -75,7 +75,7 @@ function AddProjectForm({handleOpenForm, openForm}) {
                 />
 
                 <div className={styles.formActions}>
-                    <AddButton />
+                    <AddButton text={"Add"}/>
                     <CancelButton handleOpenForm={handleOpenForm} openForm={openForm} />
                 </div>
             </form>

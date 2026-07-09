@@ -27,6 +27,7 @@ function ActionsMenu({firstButtonText, currentProjectId, openMenuProjectId, setO
     // Hooks
     const projectListData = useContext(ProjectsContext);
 
+
     // Functions
     function handleOpenCloseMenuClick() {
 
@@ -53,6 +54,8 @@ function ActionsMenu({firstButtonText, currentProjectId, openMenuProjectId, setO
         }
     }
 
+
+    // Returns
     return (
 
         <div 

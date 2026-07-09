@@ -1,6 +1,6 @@
 import styles from "../../styles/ui/ActionButton.module.css";
 
-function AddButton() {
+function AddButton({text}) {
 
     return (
 
@@ -8,7 +8,7 @@ function AddButton() {
             className={`${styles.actionButton} ${styles.addButton}`} 
             type="submit"
         >
-            Add
+            {text}
         </button>
     );
 }
