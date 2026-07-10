@@ -59,7 +59,7 @@ function useTasks() {
 
             try {
 
-                const taskList = getApiResponseBody("http://localhost:8080/api/todos");
+                const taskList = await getApiResponseBody("http://localhost:8080/api/todos");
                 dispatch({type: "FETCH_SUCCESS", payload: taskList});
 
             } catch(error) {
