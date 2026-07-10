@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { Outlet } from "react-router";
 import useProjects from "./app/hooks/useProjects.js";
+import useTasks from "./app/hooks/useTasks.js";
 import ProjectsContext from "./app/context/ProjectsContext.jsx";
 import Header from "./app/Header.jsx";
 import Sidebar from "./app/Sidebar.jsx";
@@ -10,6 +12,7 @@ function App() {
 
     const [isOpenDrawer, setOpenDrawer] = useState(false);
     const projectsListData = useProjects();
+    const tasksListData = useTasks();
 
     function handleDrawerButtonClick() {
 
@@ -24,6 +27,8 @@ function App() {
             <ProjectsContext value={projectsListData}>
                 <Sidebar isOpenDrawer={isOpenDrawer} />
             </ProjectsContext>
+
+            <Outlet />
 
             <Footer />
         </div>

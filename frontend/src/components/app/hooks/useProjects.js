@@ -6,7 +6,6 @@ async function getApiResponseBody(url) {
 
         method: "GET",
         headers: {
-
             Accept: "application/json"
         }
     });
@@ -29,13 +28,6 @@ const initialState = {
 function projectsReducer(currentState, action) {
 
     switch(action.type) {
-
-        case "FETCH_START":
-            return {
-                loading: true,
-                error: null,
-                projectList: []
-            };
 
         case "FETCH_SUCCESS":
             return {
