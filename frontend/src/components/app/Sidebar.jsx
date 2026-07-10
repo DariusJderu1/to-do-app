@@ -2,7 +2,36 @@ import { useState } from "react";
 import ProjectList from "../sidebar/ProjectList.jsx";
 import AddProjectTaskButton from "../ui/AddProjectTaskButton.jsx";
 import ProjectForm from "../sidebar/ProjectForm.jsx";
+import SidebarNavLink from "../sidebar/SidebarNavLink.jsx";
 import styles from "../../styles/app/Sidebar.module.css";
+
+const sidebarNavLinks = [
+
+    {
+        path: "/",
+        icon: "📋",
+        text: "All Tasks"
+    },
+
+    {
+        path: "today",
+        icon: "📅",
+        text: "Today"
+    },
+
+    {
+        path: "next-seven-days",
+        icon: "🗓️",
+        text: "Next 7 Days"
+    },
+
+    {
+        path: "important",
+        icon: "⭐",
+        text: "Important"
+    },
+
+];
 
 function Sidebar({isOpenDrawer}) {
 
@@ -16,25 +45,9 @@ function Sidebar({isOpenDrawer}) {
             <nav className={styles.navigation} aria-label="Main navigation">
                 <span className={styles.sectionTitle}>Home</span>
 
-                <a className={styles.navigationLink} href="#">
-                    <span className={styles.linkIcon} aria-hidden="true">📋</span>
-                    <span>All Tasks</span>
-                </a>
-
-                <a className={styles.navigationLink} href="#">
-                    <span className={styles.linkIcon} aria-hidden="true">📅</span>
-                    <span>Today</span>
-                </a>
-
-                <a className={styles.navigationLink} href="#">
-                    <span className={styles.linkIcon} aria-hidden="true">🗓️</span>
-                    <span>Next 7 Days</span>
-                </a>
-
-                <a className={styles.navigationLink} href="#">
-                    <span className={styles.linkIcon} aria-hidden="true">⭐</span>
-                    <span>Important</span>
-                </a>
+                {sidebarNavLinks.map(navLink => {
+                    return <SidebarNavLink key={navLink.text} path={navLink.path} icon={navLink.icon} text={navLink.text} />
+                })}
 
                 <span className={styles.sectionTitle}>Projects</span>
 
