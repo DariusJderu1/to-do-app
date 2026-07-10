@@ -53,6 +53,8 @@
     font-size: var(--fs-md);
 }
 
+
+/* Media queries */
 @media(min-width: 48rem) {
 
     .footerLayout {
@@ -60,3 +62,4 @@
         padding-block: 0.875rem;
     }
 }
+/* Media queries */

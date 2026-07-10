@@ -69,7 +69,7 @@
 }
 
 
-/* MEDIA QUERIES */
+/* Media queries */
 @media(min-width: 48rem) {
 
     .headerLayout {
@@ -78,4 +78,4 @@
         padding: 0.875rem clamp(1.5rem, 3vw, 3rem);
     }
 }
-/* MEDIA QUERIES */ 
+/* Media queries */ 

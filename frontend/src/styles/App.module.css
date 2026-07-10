@@ -6,3 +6,10 @@
     height: 100dvh;
     overflow: hidden;
 }
+
+.mainContentLayout {
+
+    flex: 1;
+    
+    display: flex;
+}

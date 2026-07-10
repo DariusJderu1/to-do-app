@@ -24,11 +24,13 @@ function App() {
         <div className={styles.appLayout}>
             <Header onToggleDrawer={handleDrawerButtonClick} />
 
-            <ProjectsContext value={projectsListData}>
-                <Sidebar isOpenDrawer={isOpenDrawer} />
-            </ProjectsContext>
+            <div className={styles.mainContentLayout}>
+                <ProjectsContext value={projectsListData}>
+                    <Sidebar isOpenDrawer={isOpenDrawer} />
+                </ProjectsContext>
 
-            <Outlet context={tasksListData} />
+                <Outlet context={tasksListData} />
+            </div>
 
             <Footer />
         </div>
