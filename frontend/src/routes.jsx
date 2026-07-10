@@ -4,14 +4,7 @@ const routes = [
 
     {
         path: "/",
-        element: <App />,
-        // children: [
-
-        //     {
-        //         index: true,
-        //         element: <TasksPage />
-        //     }
-        // ]
+        element: <App />
     }
 ];
 
