@@ -10,7 +10,7 @@ const routes = [
             
             {
                 index: true,
-                element: <TasksPage />
+                element: <TasksPage view="all" title="All Tasks" />
             }
         ]
     }

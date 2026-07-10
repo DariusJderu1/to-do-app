@@ -1,6 +1,6 @@
 import TaskList from "../tasks-page/TaskList.jsx";
 
-function TasksPage({title}) {
+function TasksPage({view, title}) {
 
     return (
 

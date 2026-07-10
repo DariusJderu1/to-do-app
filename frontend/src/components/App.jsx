@@ -28,7 +28,7 @@ function App() {
                 <Sidebar isOpenDrawer={isOpenDrawer} />
             </ProjectsContext>
 
-            <Outlet />
+            <Outlet context={tasksListData} />
 
             <Footer />
         </div>
