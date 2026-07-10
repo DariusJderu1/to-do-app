@@ -81,13 +81,16 @@
 }
 /* Title */
 
+
+/* Navigation */
 .navigation {
 
     display: flex;
     flex-direction: column;
     gap: 0.375rem;
 }
- 
+/* Navigation */
+
 
 /* Media queries */
 @media(min-width: 769px) {
