@@ -2,6 +2,7 @@
 .sidebarLayout {
 
     position: fixed;
+    z-index: 100;
     top: 4.75rem;
     left: 0;
     bottom: 0;
