@@ -4,7 +4,7 @@ import ActionsMenu from "../../ui/ActionsMenu.jsx";
 import ProjectForm from "../ProjectForm.jsx";
 import styles from "../../../styles/sidebar/project-list/ProjectItem.module.css";
 
-function ProjectItem({projectData, openMenuId, setOpenMenuId}) {
+function ProjectItem({projectData, openMenuId, setOpenMenuId, onDelete}) {
 
     // Hooks
     const [isRenaming, setIsRenaming] = useState(false);
@@ -16,6 +16,7 @@ function ProjectItem({projectData, openMenuId, setOpenMenuId}) {
         setIsRenaming(true);
         setOpenMenuId(null);
     }
+
 
     // Returns
     if(!isRenaming) {
@@ -37,7 +38,8 @@ function ProjectItem({projectData, openMenuId, setOpenMenuId}) {
                     currentId={projectData.id}
                     openMenuId={openMenuId} 
                     setOpenMenuId={setOpenMenuId}
-                    toggleIsRenaming={toggleIsRenaming}
+                    toggleIsEditing={toggleIsRenaming}
+                    onDelete={onDelete}
                 />
             </li>
         );

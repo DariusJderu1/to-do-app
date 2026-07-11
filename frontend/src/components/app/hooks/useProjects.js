@@ -78,9 +78,10 @@ function useProjects() {
     // Functions
     const addNewProject = (newProject) => dispatch({type: "ADD_NEW_PROJECT", payload: newProject});
 
-    const deleteProject = (projectId) => dispatch({type: "DELETE_PROJECT", payload: projectId});
-
     const updateProject = (updatedProject) => dispatch({type: "UPDATE_PROJECT", payload: updatedProject});
+
+    const deleteProjectStateChange = (projectId) => dispatch({type: "DELETE_PROJECT", payload: projectId});
+    
 
     useEffect(() => {
 
@@ -105,7 +106,7 @@ function useProjects() {
         state,
         actions: {
             addNewProject,
-            deleteProject,
+            deleteProjectStateChange,
             updateProject
         }
     }
