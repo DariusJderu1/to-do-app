@@ -4,7 +4,7 @@ import ActionsMenu from "../../ui/ActionsMenu.jsx";
 import ProjectForm from "../ProjectForm.jsx";
 import styles from "../../../styles/sidebar/project-list/ProjectItem.module.css";
 
-function ProjectItem({projectData, openMenuProjectId, setOpenMenuProjectId}) {
+function ProjectItem({projectData, openMenuId, setOpenMenuId}) {
 
     // Hooks
     const [isRenaming, setIsRenaming] = useState(false);
@@ -14,7 +14,7 @@ function ProjectItem({projectData, openMenuProjectId, setOpenMenuProjectId}) {
     function toggleIsRenaming() {
 
         setIsRenaming(true);
-        setOpenMenuProjectId(null);
+        setOpenMenuId(null);
     }
 
     // Returns
@@ -34,9 +34,9 @@ function ProjectItem({projectData, openMenuProjectId, setOpenMenuProjectId}) {
 
                 <ActionsMenu 
                     firstButtonText={"Rename"} 
-                    currentProjectId={projectData.id}
-                    openMenuProjectId={openMenuProjectId} 
-                    setOpenMenuProjectId={setOpenMenuProjectId}
+                    currentId={projectData.id}
+                    openMenuId={openMenuId} 
+                    setOpenMenuId={setOpenMenuId}
                     toggleIsRenaming={toggleIsRenaming}
                 />
             </li>

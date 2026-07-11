@@ -1,7 +1,7 @@
 import { FaRegStar, FaStar } from "react-icons/fa";
 import ActionsMenu from "../../ui/ActionsMenu.jsx";
 
-function TaskItem({taskData}) {
+function TaskItem({taskData, }) {
 
     return (
 
@@ -16,7 +16,9 @@ function TaskItem({taskData}) {
                         <FaRegStar /> :
                         <FaStar />}
 
-                    <ActionsMenu />
+                    <ActionsMenu 
+                        currentProjectId={taskData.id}
+                    />
                 </div>
             </div>
         </li>

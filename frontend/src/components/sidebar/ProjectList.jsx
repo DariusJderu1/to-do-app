@@ -58,8 +58,8 @@ function ProjectList() {
                 return <ProjectItem 
                             key={project.id} 
                             projectData={project} 
-                            openMenuProjectId={openMenuProjectId}
-                            setOpenMenuProjectId={setOpenMenuProjectId}
+                            openMenuId={openMenuProjectId}
+                            setOpenMenuId={setOpenMenuProjectId}
                         />
             })}
         </ul>

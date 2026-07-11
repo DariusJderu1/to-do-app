@@ -22,7 +22,7 @@ async function deleteProject(url, projectId) {
     return data;
 }
 
-function ActionsMenu({firstButtonText, currentProjectId, openMenuProjectId, setOpenMenuProjectId, toggleIsRenaming=null}) {
+function ActionsMenu({firstButtonText="Edit", currentId, openMenuId, setOpenMenuId, toggleIsRenaming=null}) {
     
     // Hooks
     const projectListData = useContext(ProjectsContext);
@@ -31,22 +31,22 @@ function ActionsMenu({firstButtonText, currentProjectId, openMenuProjectId, setO
     // Functions
     function handleOpenCloseMenuClick() {
 
-        if(currentProjectId === openMenuProjectId)
-            setOpenMenuProjectId(null);
+        if(currentId === openMenuId)
+            setOpenMenuId(null);
 
         else
-            setOpenMenuProjectId(currentProjectId);
+            setOpenMenuId(currentId);
     }
 
     async function handleDeleteProjectRequest() {
 
         try {
 
-            const serverResponse = await deleteProject("http://localhost:8080/api/projects", currentProjectId);
+            const serverResponse = await deleteProject("http://localhost:8080/api/projects", currentId);
             console.log(serverResponse);
 
-            setOpenMenuProjectId(null);
-            projectListData.actions.deleteProject(currentProjectId);
+            setOpenMenuId(null);
+            projectListData.actions.deleteProject(currentId);
 
         } catch(error) {
 
@@ -70,7 +70,7 @@ function ActionsMenu({firstButtonText, currentProjectId, openMenuProjectId, setO
                 <BsThreeDots aria-hidden="true" />
             </button>
             
-            {openMenuProjectId === currentProjectId ?
+            {openMenuId === currentId ?
                 (<div className={styles.actionsMenu}>
                     <button 
                         className={styles.actionButton}

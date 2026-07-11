@@ -1,8 +1,11 @@
+import { useState } from "react";
 import TaskItem from "./task-list/TaskItem.jsx";
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
 function TaskList({taskListState}) {
+
+    const [openMenuTaskId, setOpenMenuTaskId] = useState(null);
 
     // Returns
     if(taskListState.loading) {
@@ -24,7 +27,12 @@ function TaskList({taskListState}) {
 
         <ul>
             {taskListState.taskList.map(task => {
-                return <TaskItem key={task.id} taskData={task} />
+                return <TaskItem 
+                            key={task.id} 
+                            taskData={task}
+                            openMenuTaskId={openMenuTaskId}
+                            setOpenMenuTaskId={setOpenMenuTaskId}
+                        />
             })}
         </ul>
     );
