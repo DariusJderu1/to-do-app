@@ -1,0 +1,45 @@
+.tasksPage {
+
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+
+    padding: clamp(1rem, 2vw, 2rem);
+
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.title {
+
+    width: 100%;
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+    padding: clamp(0.75rem, 1.5vw, 1.25rem);
+
+    color: var(--color-text);
+    background-color: var(--color-primary);
+    border-radius: 0.25rem;
+
+    font-size: var(--fs-xl);
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+
+/* Media queries */
+@media(max-width: 48rem) {
+
+    .tasksPage {
+
+        padding: 0.75rem;
+    }
+
+    .title {
+
+        margin-bottom: 1rem;
+        padding: 0.75rem;
+
+        font-size: var(--fs-lg);
+    }
+}
+/* Media queries */

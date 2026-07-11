@@ -1,5 +1,6 @@
 import { useOutletContext } from "react-router";
 import TaskList from "../tasks-page/TaskList.jsx";
+import styles from "../../styles/app/TasksPage.module.css";
 
 function TasksPage({view, title}) {
 
@@ -8,10 +9,12 @@ function TasksPage({view, title}) {
 
     return (
 
-        <main>
-            <h1>{title}</h1>
+        <main className={styles.tasksPage}>
+            <h1 className={styles.title}>{title}</h1>
 
-            <TaskList taskListState={taskListData.state} />
+            {taskListData.state.taskList.length === 0 ?
+                null :
+                <TaskList taskListState={taskListData.state} />}
         </main>
     );
 }
