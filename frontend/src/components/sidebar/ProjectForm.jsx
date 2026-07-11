@@ -1,57 +1,10 @@
 import { useContext } from "react";
 import { FaArrowUpRightDots } from "react-icons/fa6";
+import { getAddProjectApiResponseBody, getUpdateProjectApiResponseBody } from "../app/api/projects.js";
 import AddButton from "../ui/AddButton.jsx";
 import CancelButton from "../ui/CancelButton.jsx";
 import ProjectsContext from "../app/context/ProjectsContext.jsx";
 import styles from "../../styles/sidebar/AddProjectForm.module.css";
-
-async function addProject(url, projectName) {
-
-    const response = await fetch(url, {
-
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({name: projectName, userId: 1}),
-    });
-
-    if(!response.ok) {
-
-        const errorData = await response.json();
-
-        throw new Error(errorData.message);
-    }
-    
-    const data = await response.json();
-
-    return data;
-}
-
-async function updateProject(url, projectId, newProjectName) {
-
-    const completeUrl = url + "/" + projectId;
-
-    const response = await fetch(completeUrl, {
-
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({name: newProjectName}),
-    });
-
-    if(!response.ok) {
-
-        const errorData = await response.json();
-
-        throw new Error(errorData.message);
-    }
-
-    const data = await response.json();
-
-    return data;
-}
 
 function ProjectForm({mode, projectData=null, openForm, handleOpenForm}) {
 
@@ -71,11 +24,11 @@ function ProjectForm({mode, projectData=null, openForm, handleOpenForm}) {
 
             try {
 
-                const serverResponse = await addProject("http://localhost:8080/api/projects", newProjectName);
+                const serverResponse = await getAddProjectApiResponseBody(newProjectName);
                 console.log("Project added.", serverResponse);
 
                 handleOpenForm(!openForm);
-                projectListData.actions.addNewProject(serverResponse);
+                projectListData.actions.addNewProjectStateChange(serverResponse);
 
             } catch(error) {
 
@@ -87,11 +40,11 @@ function ProjectForm({mode, projectData=null, openForm, handleOpenForm}) {
 
             try {
 
-                const serverResponse = await updateProject("http://localhost:8080/api/projects", projectData.id, newProjectName);
+                const serverResponse = await getUpdateProjectApiResponseBody(projectData.id, newProjectName);
                 console.log("Project updated.", serverResponse);
 
                 handleOpenForm(!openForm);
-                projectListData.actions.updateProject(serverResponse);
+                projectListData.actions.updateProjectStateChange(serverResponse);
 
             } catch(error) {
 

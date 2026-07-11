@@ -76,9 +76,9 @@ function useProjects() {
 
 
     // Functions
-    const addNewProject = (newProject) => dispatch({type: "ADD_NEW_PROJECT", payload: newProject});
+    const addNewProjectStateChange = (newProject) => dispatch({type: "ADD_NEW_PROJECT", payload: newProject});
 
-    const updateProject = (updatedProject) => dispatch({type: "UPDATE_PROJECT", payload: updatedProject});
+    const updateProjectStateChange = (updatedProject) => dispatch({type: "UPDATE_PROJECT", payload: updatedProject});
 
     const deleteProjectStateChange = (projectId) => dispatch({type: "DELETE_PROJECT", payload: projectId});
     
@@ -105,9 +105,9 @@ function useProjects() {
     return {
         state,
         actions: {
-            addNewProject,
+            addNewProjectStateChange,
+            updateProjectStateChange,
             deleteProjectStateChange,
-            updateProject
         }
     }
 }
