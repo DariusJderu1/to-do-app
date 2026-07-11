@@ -1,0 +1,56 @@
+.taskList {
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    width: 100%;
+}
+
+.loadingContainer {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 8rem;
+}
+
+.loadingSpinner {
+
+    color: var(--color-primary) !important;
+}
+
+.errorMessage {
+
+    width: 100%;
+    padding: 0.875rem 1rem;
+
+    color: var(--color-delete);
+    background-color: var(--color-surface-light);
+    border: 1px solid var(--color-cancel);
+    border-radius: 0.5rem;
+
+    font-size: var(--fs-md);
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+
+/* Media queries */
+@media(max-width: 48rem) {
+
+    .taskList {
+
+        gap: 0.375rem;
+    }
+
+    .errorMessage {
+
+        padding: 0.75rem;
+
+        font-size: var(--fs-sm);
+    }
+}
+/* Media queries */

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import TaskItem from "./task-list/TaskItem.jsx";
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import styles from "../../styles/tasks-page/TaskList.module.css";
 
 function TaskList({taskListState}) {
 
@@ -26,20 +27,25 @@ function TaskList({taskListState}) {
 
         return (
 
-            <Box sx={{ display: 'flex' }}>
-                <CircularProgress aria-label="Loading…" />
+            <Box className={styles.loadingContainer}>
+                <CircularProgress className={styles.loadingSpinner} aria-label="Loading…" />
             </Box>
         );
     }
 
     if(taskListState.error) {
 
-        return <p>{taskListState.error}</p>
+        return (
+
+            <p className={styles.errorMessage}>
+                {taskListState.error}
+            </p>
+        );
     }
 
     return (
 
-        <ul>
+        <ul className={styles.taskList}>
             {taskListState.taskList.map(task => {
                 return <TaskItem 
                             key={task.id} 

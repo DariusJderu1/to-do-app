@@ -12,9 +12,8 @@ function TasksPage({view, title}) {
         <main className={styles.tasksPage}>
             <h1 className={styles.title}>{title}</h1>
 
-            {taskListData.state.taskList.length === 0 ?
-                null :
-                <TaskList taskListState={taskListData.state} />}
+            
+            <TaskList taskListState={taskListData.state} />
         </main>
     );
 }
