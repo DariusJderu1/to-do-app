@@ -1,11 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TaskItem from "./task-list/TaskItem.jsx";
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
 function TaskList({taskListState}) {
 
+    // Hooks
     const [openMenuTaskId, setOpenMenuTaskId] = useState(null);
+
+
+    // Functions
+    useEffect(() => {
+
+        const handleCloseMenu = () => setOpenMenuTaskId(null);
+
+        document.addEventListener("click", handleCloseMenu);
+
+        return () => document.removeEventListener("click", handleCloseMenu);
+
+    }, []);
+
 
     // Returns
     if(taskListState.loading) {
