@@ -11,9 +11,8 @@ function TasksPage({view, title}) {
 
         <main className={styles.tasksPage}>
             <h1 className={styles.title}>{title}</h1>
-
             
-            <TaskList taskListState={taskListData.state} />
+            <TaskList taskListData={taskListData} />
         </main>
     );
 }

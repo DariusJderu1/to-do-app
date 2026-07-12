@@ -1,6 +1,6 @@
 export async function getPatchTodoApiResponseBody(todoId, updatedTodoPatchBody) {
 
-    const completeUrl = "http://localhost:8080/api/todos" + todoId;
+    const completeUrl = "http://localhost:8080/api/todos" + "/" + todoId;
 
     const response = await fetch(completeUrl, {
 
@@ -8,7 +8,7 @@ export async function getPatchTodoApiResponseBody(todoId, updatedTodoPatchBody) 
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(updatedTodoPatchBody);
+        body: JSON.stringify(updatedTodoPatchBody)
     });
 
     if(!response.ok) {

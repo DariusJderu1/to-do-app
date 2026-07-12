@@ -43,6 +43,13 @@ function tasksReducer(currentState, action) {
                 taskList: []
             }
 
+        case "UPDATE_TASK":
+            return {
+                loading: false,
+                error: null,
+                taskList: currentState.taskList.map(task => task.id === action.payload.taskId ? action.payload.updatedTask : task)
+            }
+
         default:
             return currentState;
     }
@@ -52,6 +59,10 @@ function useTasks() {
 
     // Hooks
     const [state, dispatch] = useReducer(tasksReducer, initialState);
+
+
+    // Functions
+    const updateTaskStateChange = (taskId, updatedTask) => dispatch({type: "UPDATE_TASK", payload: {taskId, updatedTask}})
 
     useEffect(() => {
 
@@ -75,7 +86,7 @@ function useTasks() {
 
         state,
         actions: {
-
+            updateTaskStateChange,
         }
     }
 }

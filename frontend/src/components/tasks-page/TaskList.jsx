@@ -2,15 +2,31 @@ import { useState, useEffect } from "react";
 import TaskItem from "./task-list/TaskItem.jsx";
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import { getPatchTodoApiResponseBody } from "../app/api/todos.js";
 import styles from "../../styles/tasks-page/TaskList.module.css";
 
-function TaskList({taskListState}) {
+function TaskList({taskListData}) {
 
     // Hooks
     const [openMenuTaskId, setOpenMenuTaskId] = useState(null);
 
 
     // Functions
+    async function handleEditTask(taskId, updatedTaskPatchBody) {
+
+        try {
+
+            const serverResponse = await getPatchTodoApiResponseBody(taskId, updatedTaskPatchBody);
+            console.log("Updated todo " + taskId, serverResponse);
+
+            taskListData.actions.updateTaskStateChange(taskId, serverResponse);
+
+        } catch(error) {
+
+            alert(error);
+        }
+    }
+
     useEffect(() => {
 
         const handleCloseMenu = () => setOpenMenuTaskId(null);
@@ -23,7 +39,7 @@ function TaskList({taskListState}) {
 
 
     // Returns
-    if(taskListState.loading) {
+    if(taskListData.state.loading) {
 
         return (
 
@@ -33,12 +49,12 @@ function TaskList({taskListState}) {
         );
     }
 
-    if(taskListState.error) {
+    if(taskListData.state.error) {
 
         return (
 
             <p className={styles.errorMessage}>
-                {taskListState.error}
+                {taskListData.state.error}
             </p>
         );
     }
@@ -46,12 +62,13 @@ function TaskList({taskListState}) {
     return (
 
         <ul className={styles.taskList}>
-            {taskListState.taskList.map(task => {
+            {taskListData.state.taskList.map(task => {
                 return <TaskItem 
                             key={task.id} 
                             taskData={task}
                             openMenuTaskId={openMenuTaskId}
                             setOpenMenuTaskId={setOpenMenuTaskId}
+                            handleEditTask={handleEditTask}
                         />
             })}
         </ul>
