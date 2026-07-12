@@ -28,10 +28,13 @@ function TaskItem({taskData, openMenuTaskId, setOpenMenuTaskId, handleEditTask})
             <div>
                 <span>{taskData.dueDate || "No due date"}</span>
 
-                <span className={`${styles.starIcon} ${taskData.completed ? styles.inactiveStar : styles.activeStar}`}>
-                    {taskData.completed ? 
-                        <FaRegStar /> :
-                        <FaStar />}
+                <span 
+                    className={`${styles.starIcon} ${taskData.important ? styles.activeStar : styles.inactiveStar}`}
+                    onClick={() => handleEditTask(taskData.id, {important: !taskData.important})}
+                >
+                    {taskData.important ? 
+                        <FaStar /> :
+                        <FaRegStar />}
                 </span>
 
                 <ActionsMenu 
