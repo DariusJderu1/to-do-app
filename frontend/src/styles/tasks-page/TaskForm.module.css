@@ -1,8 +1,8 @@
 .taskForm {
 
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.35fr);
-    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
 
     width: 100%;
     padding: clamp(1rem, 2vw, 1.25rem);
@@ -22,22 +22,8 @@
     flex-direction: column;
     gap: 0.375rem;
 
+    width: 100%;
     min-width: 0;
-}
-
-.titleField {
-
-    grid-column: 1;
-}
-
-.dateField {
-
-    grid-column: 2;
-}
-
-.descriptionField {
-
-    grid-column: 1 / -1;
 }
 
 .formLabel {
@@ -76,6 +62,7 @@
     background-color: var(--color-bg);
     border: 1px solid var(--color-border);
     border-radius: 0.4rem;
+    outline: none;
 
     font-family: inherit;
     font-size: var(--fs-sm);
@@ -83,31 +70,25 @@
 
     transition:
         border-color 150ms ease,
-        box-shadow 150ms ease,
         background-color 150ms ease;
 }
-
 .formInput::placeholder {
 
     color: var(--color-text-muted);
 
     opacity: 0.8;
 }
-
 .formInput:hover {
 
     border-color: var(--color-text-muted);
 }
-
 .formInput:focus {
 
-    background-color: var(--color-surface);
+    background-color: var(--color-bg);
     border-color: var(--color-primary);
-    outline: none;
 
-    box-shadow: 0 0 0 0.2rem rgb(32 184 166 / 15%);
+    box-shadow: none;
 }
-
 .formInput[type="date"] {
 
     color-scheme: dark;
@@ -122,48 +103,27 @@
 
 .formActions {
 
-    grid-column: 1 / -1;
-
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     gap: 0.625rem;
 
-    padding-top: 0.25rem;
+    width: 100%;
+    padding-top: 0.375rem;
 }
 
 
 /* Media queries */
-@media(max-width: 48rem) {
+@media(max-width: 30rem) {
 
     .taskForm {
 
-        grid-template-columns: 1fr;
-        gap: 0.875rem;
-
-        padding: 1rem;
+        padding: 0.875rem;
     }
-
-    .titleField,
-    .dateField,
-    .descriptionField,
-    .formActions {
-
-        grid-column: 1;
-    }
-}
-
-@media(max-width: 30rem) {
 
     .formActions {
 
-        align-items: stretch;
-        flex-direction: column;
-    }
-
-    .formActions button {
-
-        width: 100%;
+        flex-wrap: wrap;
     }
 }
 /* Media queries */

@@ -19,8 +19,8 @@ function TaskForm({mode, openForm, handleOpenForm}) {
     return (
 
         <form className={styles.taskForm}>
-            <div className={`${styles.formField} ${styles.titleField}`}>
-                <label htmlFor={titleId}>
+            <div className={styles.formField}>
+                <label className={styles.formLabel} htmlFor={titleId}>
                     Title:
                     <span className={styles.requiredMark} aria-hidden="true">*</span>
                 </label>
@@ -36,7 +36,7 @@ function TaskForm({mode, openForm, handleOpenForm}) {
                 />
             </div>
 
-            <div className={`${styles.formField} ${styles.descriptionField}`}>
+            <div className={styles.formField}>
                 <label className={styles.formLabel} htmlFor={descriptionId}>
                     Description
                     <span className={styles.optionalText}>Optional</span>
@@ -51,7 +51,7 @@ function TaskForm({mode, openForm, handleOpenForm}) {
                 ></textarea>
             </div>
 
-            <div className={`${styles.formField} ${styles.dateField}`}>
+            <div className={styles.formField}>
                 <label className={styles.formLabel} htmlFor={dateId}>
                     Due date
                     <span className={styles.optionalText}>Optional</span>
