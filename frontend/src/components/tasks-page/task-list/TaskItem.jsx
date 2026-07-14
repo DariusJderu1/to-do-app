@@ -2,7 +2,7 @@ import { FaRegStar, FaStar } from "react-icons/fa";
 import ActionsMenu from "../../ui/ActionsMenu.jsx";
 import styles from "../../../styles/tasks-page/task-list/TaskItem.module.css";
 
-function TaskItem({taskData, openMenuTaskId, setOpenMenuTaskId, handleEditTask}) {
+function TaskItem({taskData, openMenuTaskId, setOpenMenuTaskId, handleEditTask, handleDeleteTask}) {
 
     return (
 
@@ -41,6 +41,7 @@ function TaskItem({taskData, openMenuTaskId, setOpenMenuTaskId, handleEditTask})
                     currentId={taskData.id}
                     openMenuId={openMenuTaskId}
                     setOpenMenuId={setOpenMenuTaskId}
+                    onDelete={handleDeleteTask}
                 />
             </div>
         </li>

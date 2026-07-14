@@ -50,18 +50,18 @@ function projectsReducer(currentState, action) {
                 projectList: [...currentState.projectList, action.payload]
             }
 
-        case "DELETE_PROJECT":
-            return {
-                loading: false,
-                error: null,
-                projectList: currentState.projectList.filter(project => project.id !== action.payload)
-            }
-
         case "UPDATE_PROJECT":
             return {
                 loading: false,
                 error: null,
                 projectList: currentState.projectList.map(project => project.id === action.payload.id ? action.payload : project)
+            }
+
+        case "DELETE_PROJECT":
+            return {
+                loading: false,
+                error: null,
+                projectList: currentState.projectList.filter(project => project.id !== action.payload)
             }
 
         default:

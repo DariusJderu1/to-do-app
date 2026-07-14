@@ -50,6 +50,13 @@ function tasksReducer(currentState, action) {
                 taskList: currentState.taskList.map(task => task.id === action.payload.taskId ? action.payload.updatedTask : task)
             }
 
+        case "DELETE_TASK":
+            return {
+                loading: false,
+                error: null,
+                taskList: currentState.taskList.filter(task => task.id !== action.payload)
+            }
+
         default:
             return currentState;
     }
@@ -62,7 +69,8 @@ function useTasks() {
 
 
     // Functions
-    const updateTaskStateChange = (taskId, updatedTask) => dispatch({type: "UPDATE_TASK", payload: {taskId, updatedTask}})
+    const updateTaskStateChange = (taskId, updatedTask) => dispatch({type: "UPDATE_TASK", payload: {taskId, updatedTask}});
+    const deleteTaskStateChange = (taskId) => dispatch({type: "DELETE_TASK", payload: taskId})
 
     useEffect(() => {
 
@@ -87,6 +95,7 @@ function useTasks() {
         state,
         actions: {
             updateTaskStateChange,
+            deleteTaskStateChange,
         }
     }
 }

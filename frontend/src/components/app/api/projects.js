@@ -60,6 +60,5 @@ export async function getDeleteProjectApiResponseBody(projectId) {
     }
 
     const data = await response.text();
-    
     return data;
 }
