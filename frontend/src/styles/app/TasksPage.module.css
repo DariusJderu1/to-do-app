@@ -8,6 +8,33 @@
 
     overflow-y: auto;
     overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
+.tasksPage:hover {
+
+    scrollbar-color: var(--color-border) transparent;
+}
+
+.tasksPage::-webkit-scrollbar {
+
+    width: 0.4rem;
+}
+
+.tasksPage::-webkit-scrollbar-track {
+
+    background-color: transparent;
+}
+
+.tasksPage::-webkit-scrollbar-thumb {
+
+    background-color: transparent;
+    border-radius: 999px;
+}
+
+.tasksPage:hover::-webkit-scrollbar-thumb {
+
+    background-color: var(--color-border);
 }
 
 .title {

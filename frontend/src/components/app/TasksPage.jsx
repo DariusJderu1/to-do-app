@@ -7,6 +7,8 @@ function TasksPage({view, title}) {
     // Hooks
     const taskListData = useTasks(view);
 
+
+    // Returns
     return (
 
         <main className={styles.tasksPage}>
