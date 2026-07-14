@@ -1,7 +1,7 @@
 import { BsThreeDots } from "react-icons/bs";
 import styles from "../../styles/ui/ActionsMenu.module.css";
 
-function ActionsMenu({firstButtonText="Edit", currentId, openMenuId, setOpenMenuId, toggleIsEditing=null, onDelete}) {
+function ActionsMenu({firstButtonText="Edit", currentId, openMenuId, setOpenMenuId, toggleIsEditing, onDelete}) {
 
     // Functions
     function handleOpenCloseMenuClick() {

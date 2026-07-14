@@ -1,6 +1,6 @@
 import styles from "../../styles/ui/ActionButton.module.css";
 
-function CancelButton({handleOpenForm, openForm}) {
+function CancelButton({openForm, handleOpenForm}) {
 
     return (
 

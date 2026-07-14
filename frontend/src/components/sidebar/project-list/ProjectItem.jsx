@@ -20,6 +20,7 @@ function ProjectItem({projectData, openMenuId, setOpenMenuId, onDelete}) {
 
     // Returns
     if(!isRenaming) {
+        
         return (
 
             <li className={styles.projectItem}>
