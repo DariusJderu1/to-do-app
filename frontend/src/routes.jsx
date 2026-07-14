@@ -11,6 +11,21 @@ const routes = [
             {
                 index: true,
                 element: <TasksPage view="all" title="All Tasks" />
+            },
+
+            {
+                path: "today",
+                element: <TasksPage view="today" title="Today" />
+            },
+
+            {
+                path: "next-seven-days",
+                element: <TasksPage view="next-seven-days" title="Next 7 Days" />
+            },
+
+            {
+                path: "important",
+                element: <TasksPage view="important" title="Important" />
             }
         ]
     }

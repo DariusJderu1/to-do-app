@@ -62,7 +62,7 @@ function tasksReducer(currentState, action) {
     }
 }
 
-function useTasks() {
+function useTasks(view) {
 
     // Hooks
     const [state, dispatch] = useReducer(tasksReducer, initialState);
@@ -78,7 +78,7 @@ function useTasks() {
 
             try {
 
-                const taskList = await getApiResponseBody("http://localhost:8080/api/todos");
+                const taskList = await getApiResponseBody("http://localhost:8080/api/todos" + (view !== "all" ? "/" + view : ""));
                 dispatch({type: "FETCH_SUCCESS", payload: taskList});
 
             } catch(error) {
@@ -88,7 +88,7 @@ function useTasks() {
 
         })();
 
-    }, []);
+    }, [view]);
 
     return {
 
