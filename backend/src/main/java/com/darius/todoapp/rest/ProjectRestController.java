@@ -51,8 +51,12 @@ public class ProjectRestController {
     }
 
     // List of all the todos of a project
-    @GetMapping("{projectId}/todos")
+    @GetMapping("/{projectId}/todos")
     public List<TodoResponse> findAllProjectTodos(@PathVariable Long projectId) {
+
+        Project existingProject = projectService.findById(projectId);
+        if(existingProject == null)
+            throw new ResourceNotFoundException("Project with the id: " + projectId + " not found!");
 
         return TodoMapper.convertToResponseList(todoService.findAllByProjectId(projectId));
     }
