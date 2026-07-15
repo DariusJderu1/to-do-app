@@ -7,12 +7,15 @@ import com.darius.todoapp.entity.Project;
 import com.darius.todoapp.entity.User;
 import com.darius.todoapp.exception.BadRequestException;
 import com.darius.todoapp.exception.ResourceNotFoundException;
+import com.darius.todoapp.mapper.ProjectMapper;
 import com.darius.todoapp.service.ProjectService;
 import com.darius.todoapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static com.darius.todoapp.mapper.ProjectMapper.convertToResponse;
 
 // This class will have endpoints and the methods will return http responses
 @RestController
@@ -34,34 +37,12 @@ public class ProjectRestController {
     }
 
 
-    // Useful functions
-
-    // Convert a basic Project to a ProjectResponse
-    private ProjectResponse convertToResponse(Project theProject) {
-
-        return new ProjectResponse(
-                theProject.getId(),
-                theProject.getName(),
-                theProject.getUser().getId(),
-                theProject.getUser().getUsername()
-        );
-    }
-
-    // Convert a list of Projects to a list of ProjectResponse
-    private List<ProjectResponse> convertToResponseList(List<Project> theProjects) {
-
-        return theProjects.stream()
-                .map(theProject -> convertToResponse(theProject))
-                .toList();
-    }
-
-
     // GET Requests
     // List of all the projects
     @GetMapping
     public List<ProjectResponse> findAll() {
 
-        return convertToResponseList(projectService.findAll());
+        return ProjectMapper.convertToResponseList(projectService.findAll());
     }
 
 
@@ -88,7 +69,7 @@ public class ProjectRestController {
 
         Project dbProject = projectService.save(theProject);
 
-        return convertToResponse(dbProject);
+        return ProjectMapper.convertToResponse(dbProject);
     }
 
 

@@ -7,6 +7,7 @@ import com.darius.todoapp.entity.Project;
 import com.darius.todoapp.entity.Todo;
 import com.darius.todoapp.exception.BadRequestException;
 import com.darius.todoapp.exception.ResourceNotFoundException;
+import com.darius.todoapp.mapper.TodoMapper;
 import com.darius.todoapp.service.ProjectService;
 import com.darius.todoapp.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,32 +31,6 @@ public class TodoRestController {
     }
 
 
-    // Converts a basic Todo entity to the Todo Response
-    private TodoResponse convertToResponse(Todo todo) {
-
-        Project project = todo.getProject();
-
-        return new TodoResponse(
-                todo.getId(),
-                todo.getTitle(),
-                todo.getDescription(),
-                todo.getDueDate(),
-                todo.isCompleted(),
-                todo.isImportant(),
-                project.getId(),
-                project.getName()
-        );
-    }
-
-    // Convert a list of basic Todos in a List of TodoResponse
-    private List<TodoResponse> convertToResponseList(List<Todo> todos) {
-
-        return todos.stream()
-                .map(todo -> convertToResponse(todo))
-                .toList();
-    }
-
-
     // GET requests
 
     // When someone does a GET request at this endpoint
@@ -64,28 +39,28 @@ public class TodoRestController {
     @GetMapping
     public List<TodoResponse> findAll() {
 
-        return convertToResponseList(todoService.findAll());
+        return TodoMapper.convertToResponseList(todoService.findAll());
     }
 
     // Get all the todos for today
     @GetMapping("/today")
     public List<TodoResponse> getTodosToday() {
 
-        return convertToResponseList(todoService.findTodosToday());
+        return TodoMapper.convertToResponseList(todoService.findTodosToday());
     }
 
     // Get all the following todos in the next seven days
     @GetMapping("/next-seven-days")
     public List<TodoResponse> getTodosNextSevenDays() {
 
-        return convertToResponseList(todoService.findTodosNextSevenDays());
+        return TodoMapper.convertToResponseList(todoService.findTodosNextSevenDays());
     }
 
     // Get all important todos
     @GetMapping("/important")
     public List<TodoResponse> getImportantTodos() {
 
-        return convertToResponseList(todoService.findAllImportant());
+        return TodoMapper.convertToResponseList(todoService.findAllImportant());
     }
 
 
@@ -137,7 +112,7 @@ public class TodoRestController {
 
         Todo dbTodo = todoService.save(theTodo);
 
-        return convertToResponse(dbTodo);
+        return TodoMapper.convertToResponse(dbTodo);
     }
 
 
@@ -177,7 +152,7 @@ public class TodoRestController {
 
         Todo dbTodo = todoService.save(existingTodo);
 
-        return convertToResponse(dbTodo);
+        return TodoMapper.convertToResponse(dbTodo);
     }
 
     // Update a todo with a partial request body
@@ -231,7 +206,7 @@ public class TodoRestController {
 
         Todo dbTodo = todoService.save(existingTodo);
 
-        return convertToResponse(dbTodo);
+        return TodoMapper.convertToResponse(dbTodo);
     }
 
 
