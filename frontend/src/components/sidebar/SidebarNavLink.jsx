@@ -8,7 +8,7 @@ function SidebarNavLink({path, icon, text}) {
         <NavLink 
             to={path}
             className={ ({isActive}) => {
-                return isActive? `${styles.navigationLink} ${styles.activeLink}` : styles.navigationLink;
+                return isActive ? `${styles.navigationLink} ${styles.activeLink}` : styles.navigationLink;
             }} 
         >
             <span className={styles.linkIcon} aria-hidden="true">{icon}</span>

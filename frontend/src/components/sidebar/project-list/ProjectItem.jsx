@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from "react-router";
 import { FaArrowUpRightDots } from "react-icons/fa6";
 import ActionsMenu from "../../ui/ActionsMenu.jsx";
 import ProjectForm from "../ProjectForm.jsx";
@@ -24,15 +25,21 @@ function ProjectItem({projectData, openMenuId, setOpenMenuId, onDelete}) {
         return (
 
             <li className={styles.projectItem}>
-                <div className={styles.projectInformation}>
-                    <span className={styles.projectIcon} aria-hidden="true">
-                        <FaArrowUpRightDots />
-                    </span>
-
-                    <span className={styles.projectName}>
-                        {projectData.name}
-                    </span>
-                </div>
+                <NavLink 
+                    className={({isActive}) => {
+                        return isActive ? `${styles.projectLink} ${styles.activeProjectLink}` : styles.projectLink;
+                    }}
+                    to={`/projects/${projectData.id}`}
+                >
+                    <div className={styles.projectInformation}>
+                        <span className={styles.projectIcon} aria-hidden="true">
+                            <FaArrowUpRightDots />
+                        </span>
+                        <span className={styles.projectName}>
+                            {projectData.name}
+                        </span>
+                    </div>
+                </NavLink>
 
                 <ActionsMenu 
                     firstButtonText={"Rename"} 
@@ -49,7 +56,7 @@ function ProjectItem({projectData, openMenuId, setOpenMenuId, onDelete}) {
     else {
         return (
 
-            <li>
+            <li className={styles.projectFormItem}>
                 <ProjectForm
                     mode={"update"}
                     projectData={projectData}
