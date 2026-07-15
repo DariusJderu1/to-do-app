@@ -10,6 +10,8 @@ public interface TodoService {
 
     List<Todo> findAll();
 
+    List<Todo> findAllByProjectId(Long theProjectId);
+
     Todo save(Todo theTodo);
 
     void deleteById(Long theId);

@@ -3,12 +3,15 @@ package com.darius.todoapp.rest;
 import com.darius.todoapp.dto.ProjectRequest;
 import com.darius.todoapp.dto.ProjectResponse;
 import com.darius.todoapp.dto.ProjectUpdateRequest;
+import com.darius.todoapp.dto.TodoResponse;
 import com.darius.todoapp.entity.Project;
 import com.darius.todoapp.entity.User;
 import com.darius.todoapp.exception.BadRequestException;
 import com.darius.todoapp.exception.ResourceNotFoundException;
 import com.darius.todoapp.mapper.ProjectMapper;
+import com.darius.todoapp.mapper.TodoMapper;
 import com.darius.todoapp.service.ProjectService;
+import com.darius.todoapp.service.TodoService;
 import com.darius.todoapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,14 +27,16 @@ import static com.darius.todoapp.mapper.ProjectMapper.convertToResponse;
 public class ProjectRestController {
 
     // Fields
+    private final TodoService todoService;
     private final ProjectService projectService;
     private final UserService userService;
 
 
     // Constructors
     @Autowired
-    public ProjectRestController(ProjectService projectService, UserService userService) {
+    public ProjectRestController(TodoService todoService, ProjectService projectService, UserService userService) {
 
+        this.todoService = todoService;
         this.projectService = projectService;
         this.userService = userService;
     }
@@ -43,6 +48,13 @@ public class ProjectRestController {
     public List<ProjectResponse> findAll() {
 
         return ProjectMapper.convertToResponseList(projectService.findAll());
+    }
+
+    // List of all the todos of a project
+    @GetMapping("{projectId}/todos")
+    public List<TodoResponse> findAllProjectTodos(@PathVariable Long projectId) {
+
+        return TodoMapper.convertToResponseList(todoService.findAllByProjectId(projectId));
     }
 
 

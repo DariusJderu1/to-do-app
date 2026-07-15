@@ -41,6 +41,19 @@ public class TodoDAOImpl implements TodoDAO {
     }
 
     @Override
+    public List<Todo> findAllByProjectId(Long theProjectId) {
+
+        TypedQuery<Todo> theQuery = entityManager.createQuery(
+                "FROM Todo " +
+                        "WHERE project.id = :theProjectId", Todo.class);
+
+        theQuery.setParameter("theProjectId", theProjectId);
+
+        List<Todo> todos = theQuery.getResultList();
+        return todos;
+    }
+
+    @Override
     public Todo save(Todo theTodo) {
 
         // If the id of the theTodo that came from the client is 0

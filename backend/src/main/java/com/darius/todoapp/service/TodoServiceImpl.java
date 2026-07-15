@@ -34,6 +34,12 @@ public class TodoServiceImpl implements TodoService{
         return todoDAO.findAll();
     }
 
+    @Override
+    public List<Todo> findAllByProjectId(Long theProjectId) {
+
+        return todoDAO.findAllByProjectId(theProjectId);
+    }
+
     @Transactional
     @Override
     public Todo save(Todo theTodo) {
