@@ -4,7 +4,7 @@ import ActionsMenu from "../../ui/ActionsMenu.jsx";
 import TaskForm from "../TaskForm.jsx";
 import styles from "../../../styles/tasks-page/task-list/TaskItem.module.css";
 
-function TaskItem({taskData, openMenuTaskId, setOpenMenuTaskId, handleEditTask, handleDeleteTask}) {
+function TaskItem({taskData, taskListDataActions, openMenuTaskId, setOpenMenuTaskId, handleEditTask, handleDeleteTask}) {
 
     // Hooks
     const [isEditing, setIsEditing] = useState(false);
@@ -75,6 +75,8 @@ function TaskItem({taskData, openMenuTaskId, setOpenMenuTaskId, handleEditTask, 
                     mode="edit" 
                     openForm={isEditing}
                     handleOpenForm={setIsEditing}
+                    taskData={taskData}
+                    taskListDataActions={taskListDataActions}
                 />
             </li>
         );

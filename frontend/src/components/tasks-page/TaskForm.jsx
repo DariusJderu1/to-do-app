@@ -2,8 +2,9 @@ import { useId } from "react";
 import AddButton from "../ui/AddButton.jsx";
 import CancelButton from "../ui/CancelButton.jsx";
 import styles from "../../styles/tasks-page/TaskForm.module.css";
+import { getPatchTodoApiResponseBody } from "../app/api/tasks.js";
 
-function TaskForm({mode, openForm, handleOpenForm}) {
+function TaskForm({mode, openForm, handleOpenForm, taskData, taskListDataActions}) {
 
     // Hooks
     const formId = useId();
@@ -15,10 +16,43 @@ function TaskForm({mode, openForm, handleOpenForm}) {
     const dateId = `${formId}-date`;
 
 
+    // Functions
+    async function handleTaskFormSubmit(e) {
+
+        e.preventDefault();
+
+        const form = e.target;
+        const newTaskTitle = form.elements["title"].value;
+        const newTaskDescription = form.elements["description"].value;
+        const newTaskDate = form.elements["due-date"].value;
+        const updatedTaskPatchBody = {
+            title: newTaskTitle,
+            description: newTaskDescription,
+            dueDate: newTaskDate
+        };
+
+        if(mode === "edit") {
+
+            try {
+
+                const serverResponse = await getPatchTodoApiResponseBody(taskData.id, updatedTaskPatchBody);
+                console.log("Project updated.", serverResponse);
+
+                handleOpenForm(false);
+                taskListDataActions.updateTaskStateChange(taskData.id, serverResponse);
+                
+            } catch(error) {
+
+                alert(error);
+            }
+        }
+    }
+
+
     // Returns 
     return (
 
-        <form className={styles.taskForm}>
+        <form className={styles.taskForm} onSubmit={handleTaskFormSubmit}>
             <div className={styles.formField}>
                 <label className={styles.formLabel} htmlFor={titleId}>
                     Title:
@@ -29,6 +63,8 @@ function TaskForm({mode, openForm, handleOpenForm}) {
                     className={styles.formInput}
                     type="text" 
                     id={titleId}
+                    name="title"
+                    defaultValue={taskData.title}
                     placeholder="What needs to be done?"
                     maxLength={100}
                     required
@@ -45,6 +81,8 @@ function TaskForm({mode, openForm, handleOpenForm}) {
                 <textarea
                     className={`${styles.formInput} ${styles.descriptionInput}`}
                     id={descriptionId}
+                    name="description"
+                    defaultValue={taskData.description}
                     placeholder="Add a few details about this task..."
                     rows={3}
                     maxLength={500}
@@ -61,6 +99,8 @@ function TaskForm({mode, openForm, handleOpenForm}) {
                     className={styles.formInput}
                     type="date" 
                     id={dateId}
+                    name="due-date"
+                    defaultValue={taskData.dueDate}
                 />
             </div>
 

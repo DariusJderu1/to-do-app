@@ -1,4 +1,4 @@
-export async function getPatchTodoApiResponseBody(taskId, updatedTodoPatchBody) {
+export async function getPatchTodoApiResponseBody(taskId, updatedTaskPatchBody) {
 
     const completeUrl = "http://localhost:8080/api/todos" + "/" + taskId;
 
@@ -8,7 +8,7 @@ export async function getPatchTodoApiResponseBody(taskId, updatedTodoPatchBody) 
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(updatedTodoPatchBody)
+        body: JSON.stringify(updatedTaskPatchBody)
     });
 
     if(!response.ok) {

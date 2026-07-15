@@ -82,6 +82,7 @@ function TaskList({taskListData}) {
                 return <TaskItem 
                             key={task.id} 
                             taskData={task}
+                            taskListDataActions={taskListData.actions}
                             openMenuTaskId={openMenuTaskId}
                             setOpenMenuTaskId={setOpenMenuTaskId}
                             handleEditTask={handleEditTask}
