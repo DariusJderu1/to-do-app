@@ -49,12 +49,14 @@ function ProjectItem({projectData, openMenuId, setOpenMenuId, onDelete}) {
     else {
         return (
 
-            <ProjectForm 
-                mode={"update"} 
-                projectData={projectData}
-                openForm={isRenaming}
-                handleOpenForm={setIsRenaming}
-            />
+            <li>
+                <ProjectForm
+                    mode={"update"}
+                    projectData={projectData}
+                    openForm={isRenaming}
+                    handleOpenForm={setIsRenaming}
+                />
+            </li>
         );
     }
     

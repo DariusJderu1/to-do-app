@@ -26,6 +26,11 @@ const routes = [
             {
                 path: "important",
                 element: <TasksPage view="important" title="Important" />
+            },
+
+            {
+                path: "projects/:projectId",
+                element: <TasksPage view="projects" />
             }
         ]
     }
