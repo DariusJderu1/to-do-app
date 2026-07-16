@@ -6,8 +6,8 @@ import styles from "../../styles/app/TasksPage.module.css";
 function TasksPage({view, title}) {
 
     // Hooks
-    const taskListData = useTasks(view);
     const { projectId } = useParams();
+    const taskListData = useTasks(view, parseInt(projectId));
     const projectListState = useOutletContext();
 
 

@@ -62,10 +62,14 @@ function tasksReducer(currentState, action) {
     }
 }
 
-function useTasks(view) {
+function useTasks(view, projectId=null) {
 
     // Hooks
     const [state, dispatch] = useReducer(tasksReducer, initialState);
+
+
+    // Variables
+    const baseUrl = "http://localhost:8080/";
 
 
     // Functions
@@ -78,7 +82,19 @@ function useTasks(view) {
 
             try {
 
-                const taskList = await getApiResponseBody("http://localhost:8080/api/todos" + (view !== "all" ? "/" + view : ""));
+                let taskList, finalUrl;
+
+                if(view !== "projects") {
+
+                    finalUrl = baseUrl + "api/todos";
+                    taskList = await getApiResponseBody(finalUrl + (view !== "all" ? ("/" + view) : ""));
+
+                } else {
+
+                    finalUrl = baseUrl + "api/projects";
+                    taskList = await getApiResponseBody(finalUrl + `/${projectId}/todos`);
+                }
+                
                 dispatch({type: "FETCH_SUCCESS", payload: taskList});
 
             } catch(error) {
@@ -88,8 +104,10 @@ function useTasks(view) {
 
         })();
 
-    }, [view]);
+    }, [view, projectId]);
 
+
+    // Returns 
     return {
 
         state,
