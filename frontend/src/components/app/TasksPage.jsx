@@ -19,6 +19,17 @@ function TasksPage({view, title}) {
     if(view === "projects" && !isLoading && !error) {
 
         const currentProject = projectList.find(project => project.id === parseInt(projectId));
+
+        if(!currentProject) {
+
+            return (
+
+                <main className={styles.tasksPage}>
+                    <h1 className={styles.title}>No project with the Id {projectId}</h1>
+                </main>
+            );
+        }
+
         title = currentProject.name;
     }
 
