@@ -1,7 +1,9 @@
 import { useParams, useOutletContext } from "react-router";
+import { useState } from "react";
 import useTasks from "./hooks/useTasks.js";
 import TaskList from "../tasks-page/TaskList.jsx";
 import AddProjectTaskButton from "../ui/AddProjectTaskButton.jsx";
+import TaskForm from "../tasks-page/TaskForm.jsx";
 import styles from "../../styles/app/TasksPage.module.css";
 
 function TasksPage({view, title}) {
@@ -10,6 +12,7 @@ function TasksPage({view, title}) {
     const { projectId } = useParams();
     const taskListData = useTasks(view, parseInt(projectId));
     const projectListState = useOutletContext();
+    const [openForm, setOpenForm] = useState(false);
 
 
     // Variables
@@ -48,9 +51,17 @@ function TasksPage({view, title}) {
             <TaskList taskListData={taskListData} />
 
             {view === "projects" ? 
-                <AddProjectTaskButton 
-                    text="Add Task"
-                /> : 
+                (openForm ? 
+                    <TaskForm 
+                        mode="add"
+                        openForm={openForm}
+                        handleOpenForm={setOpenForm} 
+                    /> :
+                    <AddProjectTaskButton 
+                        text="Add Task"
+                        openForm={openForm}
+                        handleOpenForm={setOpenForm}
+                    />) :
                 null}
         </main>
     );

@@ -55,7 +55,7 @@ function Sidebar({isOpenDrawer}) {
             </nav>
 
             {!openForm ? 
-                <AddProjectTaskButton text={"Add Project"} handleOpenForm={setOpenForm} openForm={openForm} /> :
+                <AddProjectTaskButton text={"Add Project"} openForm={openForm} handleOpenForm={setOpenForm} /> :
                 <ProjectForm mode={"add"} openForm={openForm} handleOpenForm={setOpenForm} />}
         </aside>
     );

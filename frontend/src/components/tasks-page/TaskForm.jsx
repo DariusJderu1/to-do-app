@@ -4,7 +4,7 @@ import CancelButton from "../ui/CancelButton.jsx";
 import styles from "../../styles/tasks-page/TaskForm.module.css";
 import { getPatchTodoApiResponseBody } from "../app/api/tasks.js";
 
-function TaskForm({mode, openForm, handleOpenForm, taskData, taskListDataActions}) {
+function TaskForm({mode, openForm, handleOpenForm, taskListDataActions, taskData=null}) {
 
     // Hooks
     const formId = useId();
@@ -64,7 +64,7 @@ function TaskForm({mode, openForm, handleOpenForm, taskData, taskListDataActions
                     type="text" 
                     id={titleId}
                     name="title"
-                    defaultValue={taskData.title}
+                    defaultValue={taskData ? taskData.title : ""}
                     placeholder="What needs to be done?"
                     maxLength={100}
                     required
@@ -82,7 +82,7 @@ function TaskForm({mode, openForm, handleOpenForm, taskData, taskListDataActions
                     className={`${styles.formInput} ${styles.descriptionInput}`}
                     id={descriptionId}
                     name="description"
-                    defaultValue={taskData.description}
+                    defaultValue={taskData ? taskData.description : ""}
                     placeholder="Add a few details about this task..."
                     rows={3}
                     maxLength={500}
@@ -100,7 +100,7 @@ function TaskForm({mode, openForm, handleOpenForm, taskData, taskListDataActions
                     type="date" 
                     id={dateId}
                     name="due-date"
-                    defaultValue={taskData.dueDate}
+                    defaultValue={taskData ? taskData.dueDate : ""}
                 />
             </div>
 
