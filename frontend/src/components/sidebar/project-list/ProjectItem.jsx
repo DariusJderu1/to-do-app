@@ -35,6 +35,7 @@ function ProjectItem({projectData, openMenuId, setOpenMenuId, onDelete}) {
                         <span className={styles.projectIcon} aria-hidden="true">
                             <FaArrowUpRightDots />
                         </span>
+                        
                         <span className={styles.projectName}>
                             {projectData.name}
                         </span>
