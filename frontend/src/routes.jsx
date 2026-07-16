@@ -1,5 +1,6 @@
 import App from "./components/App.jsx";
 import TasksPage from "./components/app/TasksPage.jsx";
+import ErrorPage from "./components/app/ErrorPage.jsx";
 
 const routes = [
 
@@ -32,7 +33,9 @@ const routes = [
                 path: "projects/:projectId",
                 element: <TasksPage view="projects" />
             }
-        ]
+        ],
+
+        errorElement: <ErrorPage />
     }
 ];
 
