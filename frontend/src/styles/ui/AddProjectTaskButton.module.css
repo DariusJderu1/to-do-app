@@ -7,8 +7,10 @@
     border: 0;
     border-radius: 0.5rem;
 
-    font: inherit;
+    font-family: inherit;
+    font-size: var(--fs-md);
     font-weight: 600;
+    line-height: 1.2;
 
     transition:
         color 150ms ease,

@@ -1,5 +1,10 @@
 .tasksPage {
 
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: clamp(0.75rem, 1.5vw, 1.5rem);
+    
     flex: 1;
     min-width: 0;
     min-height: 0;
@@ -40,7 +45,6 @@
 .title {
 
     width: 100%;
-    margin-bottom: clamp(1rem, 2vw, 1.5rem);
     padding: clamp(0.75rem, 1.5vw, 1.25rem);
 
     color: var(--color-text);
@@ -63,7 +67,6 @@
 
     .title {
 
-        margin-bottom: 1rem;
         padding: 0.75rem;
 
         font-size: var(--fs-lg);

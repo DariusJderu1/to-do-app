@@ -1,6 +1,7 @@
 import { useParams, useOutletContext } from "react-router";
 import useTasks from "./hooks/useTasks.js";
 import TaskList from "../tasks-page/TaskList.jsx";
+import AddProjectTaskButton from "../ui/AddProjectTaskButton.jsx";
 import styles from "../../styles/app/TasksPage.module.css";
 
 function TasksPage({view, title}) {
@@ -45,6 +46,12 @@ function TasksPage({view, title}) {
             </h1>
             
             <TaskList taskListData={taskListData} />
+
+            {view === "projects" ? 
+                <AddProjectTaskButton 
+                    text="Add Task"
+                /> : 
+                null}
         </main>
     );
 }
