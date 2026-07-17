@@ -1,4 +1,4 @@
-export async function getPostTodoApiResponseBody(newTask) {
+export async function getAddTaskApiResponseBody(newTaskBody) {
 
     const completeUrl = "http://localhost:8080/api/todos";
 
@@ -8,7 +8,7 @@ export async function getPostTodoApiResponseBody(newTask) {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(newTask)
+        body: JSON.stringify(newTaskBody)
     });
 
     if(!response.ok) {

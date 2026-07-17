@@ -55,7 +55,9 @@ function TasksPage({view, title}) {
                     <TaskForm 
                         mode="add"
                         openForm={openForm}
-                        handleOpenForm={setOpenForm} 
+                        handleOpenForm={setOpenForm}
+                        taskListDataActions={taskListData.actions} 
+                        projectId={parseInt(projectId)}
                     /> :
                     <AddProjectTaskButton 
                         text="Add Task"

@@ -2,9 +2,9 @@ import { useId } from "react";
 import AddButton from "../ui/AddButton.jsx";
 import CancelButton from "../ui/CancelButton.jsx";
 import styles from "../../styles/tasks-page/TaskForm.module.css";
-import { getPatchTodoApiResponseBody } from "../app/api/tasks.js";
+import { getPatchTodoApiResponseBody, getAddTaskApiResponseBody } from "../app/api/tasks.js";
 
-function TaskForm({mode, openForm, handleOpenForm, taskListDataActions, taskData=null}) {
+function TaskForm({mode, openForm, handleOpenForm, taskListDataActions, taskData=null, projectId=null}) {
 
     // Hooks
     const formId = useId();
@@ -25,7 +25,7 @@ function TaskForm({mode, openForm, handleOpenForm, taskListDataActions, taskData
         const newTaskTitle = form.elements["title"].value;
         const newTaskDescription = form.elements["description"].value;
         const newTaskDate = form.elements["due-date"].value;
-        const updatedTaskPatchBody = {
+        const newTaskBody = {
             title: newTaskTitle,
             description: newTaskDescription,
             dueDate: newTaskDate
@@ -35,7 +35,7 @@ function TaskForm({mode, openForm, handleOpenForm, taskListDataActions, taskData
 
             try {
 
-                const serverResponse = await getPatchTodoApiResponseBody(taskData.id, updatedTaskPatchBody);
+                const serverResponse = await getPatchTodoApiResponseBody(taskData.id, newTaskBody);
                 console.log("Project updated.", serverResponse);
 
                 handleOpenForm(false);
@@ -50,7 +50,15 @@ function TaskForm({mode, openForm, handleOpenForm, taskListDataActions, taskData
 
             try {
 
-                const serverResponse = await get
+                const serverResponse = await getAddTaskApiResponseBody({...newTaskBody, projectId: projectId});
+                console.log("Project added.", serverResponse);
+
+                handleOpenForm(false);
+                taskListDataActions.addTaskStateChange(serverResponse);
+
+            } catch(error) {
+
+                alert(error);
             }
         }
     }

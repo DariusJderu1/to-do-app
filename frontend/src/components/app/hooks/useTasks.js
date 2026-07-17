@@ -43,6 +43,13 @@ function tasksReducer(currentState, action) {
                 taskList: []
             }
 
+        case "ADD_TASK":
+            return {
+                loading: false,
+                error: null,
+                taskList: [...currentState.taskList, action.payload] 
+            }
+
         case "UPDATE_TASK":
             return {
                 loading: false,
@@ -73,6 +80,7 @@ function useTasks(view, projectId=null) {
 
 
     // Functions
+    const addTaskStateChange = (newTaskBody) => dispatch({type: "ADD_TASK", payload: newTaskBody})
     const updateTaskStateChange = (taskId, updatedTask) => dispatch({type: "UPDATE_TASK", payload: {taskId, updatedTask}});
     const deleteTaskStateChange = (taskId) => dispatch({type: "DELETE_TASK", payload: taskId})
 
@@ -112,6 +120,7 @@ function useTasks(view, projectId=null) {
 
         state,
         actions: {
+            addTaskStateChange,
             updateTaskStateChange,
             deleteTaskStateChange,
         }
