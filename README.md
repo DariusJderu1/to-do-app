@@ -18,11 +18,23 @@ The project was built to practice connecting a React frontend to a REST API and 
 
 ## Tech Stack
 
-| Area | Technologies |
-| --- | --- |
-| Frontend | React 19, React Router, Vite, CSS Modules, Material UI, React Icons |
-| Backend | Java 25, Spring Boot 4.1, Spring Web MVC, JPA/Hibernate, Maven |
-| Database | MySQL |
+- **Frontend:** React 19, React Router, Vite, CSS Modules, Material UI, React Icons
+- **Backend:** Java 25, Spring Boot 4.1, Spring Web MVC, JPA/Hibernate, Maven
+- **Database:** MySQL
+
+## Backend Structure
+
+The backend follows a layered structure:
+
+**Request → REST Controller → Service → DAO → MySQL**
+
+- **REST Controllers** define the API endpoints, validate incoming data, and handle requests.
+- **DTOs** define the request and response data without exposing the entities directly.
+- **Mappers** convert entities into response DTOs.
+- **Services** connect the controllers to the persistence layer.
+- **DAOs** handle database operations using JPA and Hibernate.
+- **Entities** map Java objects to the MySQL tables.
+- **Exception handling** returns consistent API error responses.
 
 ## Database Schema
 
@@ -42,8 +54,6 @@ The planned security work includes:
 - Make sure users can only access and modify their own projects and tasks.
 - Protect API endpoints and return appropriate responses for unauthenticated or unauthorized requests.
 - Use the existing user role field as the starting point for role-based authorization.
-
-The exact authentication approach, such as session-based authentication or tokens, has not been chosen yet.
 
 ## Screenshots
 
