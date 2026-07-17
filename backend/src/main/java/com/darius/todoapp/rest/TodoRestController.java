@@ -1,6 +1,7 @@
 package com.darius.todoapp.rest;
 
 import com.darius.todoapp.dto.TodoPatchRequest;
+import com.darius.todoapp.dto.TodoPostRequest;
 import com.darius.todoapp.dto.TodoRequest;
 import com.darius.todoapp.dto.TodoResponse;
 import com.darius.todoapp.entity.Project;
@@ -69,10 +70,10 @@ public class TodoRestController {
     // Add a todo
     // The @RequestBody annotation tells Spring
     // to take the body of the HTTP request, the JSON
-    // and transform it into a Java Object of type TodoRequest
+    // and transform it into a Java Object of type TodoPostRequest
     // (in this case) using Jackson
     @PostMapping
-    public TodoResponse addTodo(@RequestBody TodoRequest todoRequest) {
+    public TodoResponse addTodo(@RequestBody TodoPostRequest todoRequest) {
 
         // All the things below aren't needed anymore, because
         // we have a TodoRequest that forces the fields, not just
@@ -105,8 +106,8 @@ public class TodoRestController {
                 todoRequest.getTitle(),
                 todoRequest.getDescription(),
                 todoRequest.getDueDate(),
-                todoRequest.isCompleted(),
-                todoRequest.isImportant(),
+                false,
+                false,
                 project
         );
 
